@@ -1,0 +1,137 @@
+/* ====== ESTILOS GENERALES ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    /* Fondo general claro */
+    color: #333;
+    /* Texto oscuro */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ====== ENCABEZADO ====== */
+header {
+    background-color: #5a3102;
+    /* Color café tradicional mexicano */
+    color: white;
+    padding: 20px;
+    border-radius: 0 0 30px 30px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ====== MENÚ DE NAVEGACIÓN ====== */
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #8b4b00;
+    /* Efecto hover */
+}
+
+/* ====== BIENVENIDA ====== */
+.bienvenida {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.bienvenida h1 {
+    font-size: 36px;
+    color: #5a3102;
+}
+
+.bienvenida p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* ====== MENÚ DESTACADO ====== */
+.menu-destacado {
+    padding: 40px 20px;
+    background-color: #fff3e0;
+}
+
+.menu-destacado h2 {
+    text-align: center;
+    color: #8b4b00;
+    margin-bottom: 30px;
+}
+
+.platillos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.platillo {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.platillo img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ====== PROMOCIÓN ====== */
+.promo {
+    background-color: #ffe0b2;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.promo h3 {
+    color: #bf360c;
+}
+
+.promo p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* ====== PIE DE PÁGINA ====== */
+footer {
+    background-color: #5a3102;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 30px 30px 0 0;
+    margin-top: 40px;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
