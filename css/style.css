@@ -245,6 +245,63 @@ nav ul li a:hover {
     font-size: 18px;
 }
 
+/* ====== FORMULARIO DE FACTURACIÓN ====== */
+.formulario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 1000px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 30%;
+    min-width: 200px;
+    border: 5px solid #0000;
+    border-radius: 5px;
+}
+
+.campo input,
+.campo select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: 1rem;
+}
+
+.botones {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.botones button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-verde {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-azul {
+    background-color: #007bff;
+    color: white;
+}
+
+.comentario {
+    margin-top: 20px;
+}
+
+.comentario a {
+    color: #3399ff;
+}
+
 /* ====== PIE DE PÁGINA ====== */
 footer {
     background-color: #5a3102;
@@ -275,6 +332,8 @@ footer {
     margin-top: 20px;
     font-size: 15px;
 }
+
+.redes-form {}
 
 footer p {
     margin-bottom: 10px;
