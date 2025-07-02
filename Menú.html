@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Cenaduría Chayito</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <div class="logo header-logo">
+                <img src="img/logoblanco.png" alt="Logo" class="tamanio-logo">
+            </div>
+        </a>
+        <div class="header-menu">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="borde-menu">Inicio</a></li>
+                    <li><a href="Menú.html" class="borde-menu activo">Menú</a></li>
+                    <li><a href="promociones.html" class="borde-menu">Promociones</a></li>
+                    <li><a id="link-facturacion" class="borde-menu">Facturación</a></li>
+                    <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- PERFIL CON MENÚ DESPLEGABLE -->
+        <div class="contenedor-inicio-perfil">
+            <div class="perfil-dropdown">
+                <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+                <div id="menu-perfil" class="menu-perfil">
+                    <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                    <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                    <a href="login.html" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2 style="text-align:center; margin-top: 30px; color:#5a3102;">Explora nuestro menú</h2>
+
+        <div class="menu-botones">
+            <div class="menu-boton" onclick="mostrar('desayunos')">
+                <img src="img/desayuno.png" alt="Desayunos">
+                <h3>Desayunos</h3>
+            </div>
+            <div class="menu-boton" onclick="mostrar('omelettes')">
+                <img src="img/Omelettes.png" alt="Omelettes">
+                <h3>Omelettes</h3>
+            </div>
+            <div class="menu-boton" onclick="mostrar('antojitos')">
+                <img src="img/Antojitos.png" alt="Antojitos">
+                <h3>Antojitos</h3>
+            </div>
+            <div class="menu-boton" onclick="mostrar('delmar')">
+                <img src="img/Del mar.png" alt="Del Mar">
+                <h3>Del Mar</h3>
+            </div>
+            <div class="menu-boton" onclick="mostrar('bebidas')">
+                <img src="img/bebidas.png" alt="Bebidas">
+                <h3>Bebidas</h3>
+            </div>
+        </div>
+
+        <!-- Secciones del menú -->
+        <section class="menu-destacado seccion-oculta" style="background-color: #fff0e0;" id="desayunos">
+            <h2>Desayunos</h2>
+            <div class="platillos">
+                <div class="platillo">
+                    <img src="img/Rancheros.png" alt="Huevos Rancheros">
+                    <h3>Huevos Rancheros</h3>
+                    <p>Huevos estrellados montados en tortilla frita bañados en salsa roja.</p>
+                    <span>$125</span>
+                </div>
+                <div class="platillo">
+                    <img src="img/Huevos di.png" alt="Huevos Divorciados con Chilaquiles">
+                    <h3>Huevos Divorciados con Chilaquiles</h3>
+                    <p>Montados en tortilla de maíz frita con salsa roja y verde, separados por chilaquiles rojos.</p>
+                    <span>$135</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-destacado seccion-oculta" id="omelettes">
+            <h2>Omelettes</h2>
+            <div class="platillos">
+                <div class="platillo">
+                    <img src="img/Omelette g.png" alt="Omelette al gusto">
+                    <h3>Omelette al gusto</h3>
+                    <p>Con jamón, tocino, salchicha o champiñones, acompañado de frijoles y ensalada.</p>
+                    <span>$140</span>
+                </div>
+                <div class="platillo">
+                    <img src="img/Omelette c.png" alt="Omelette de Camarón">
+                    <h3>Omelette de Camarón</h3>
+                    <p>Relleno de camarones, acompañado de frijoles, ensalada fresca y papa hashbrown.</p>
+                    <span>$210</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-destacado seccion-oculta" id="antojitos">
+            <h2>Antojitos Mexicanos</h2>
+            <div class="platillos">
+                <div class="platillo">
+                    <img src="img/Enchiladas.png" alt="Enchiladas de Pollo en Salsa Verde">
+                    <h3>Enchiladas de Pollo en Salsa Verde</h3>
+                    <p>Enchiladas rellenas de pollo bañadas en salsa verde. Acompañadas de arroz y ensalada.</p>
+                    <span>$130</span>
+                </div>
+                <div class="platillo">
+                    <img src="img/sesos.png" alt="Tacos Dorados de Sesos">
+                    <h3>Tacos Dorados de Sesos</h3>
+                    <p>Tortillas doradas rellenas de sesos, acompañadas de guarnición.</p>
+                    <span>$60</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-destacado seccion-oculta" id="delmar">
+            <h2>Del Mar</h2>
+            <div class="platillos">
+                <div class="platillo">
+                    <img src="img/camacoco.png" alt="Camarones al Coco">
+                    <h3>Camarones al Coco</h3>
+                    <p>Acompañados de arroz, verduras cocidas de temporada y pan con mantequilla.</p>
+                    <span>$285</span>
+                </div>
+                <div class="platillo">
+                    <img src="img/filete v.png" alt="Filete Veracruzano">
+                    <h3>Filete Veracruzano</h3>
+                    <p>Pescado a la veracruzana acompañado de arroz, verduras y pan.</p>
+                    <span>$265</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-destacado seccion-oculta" id="bebidas">
+            <h2>Bebidas</h2>
+            <div class="platillos">
+                <div class="platillo">
+                    <img src="img/cafe a.png" alt="Café">
+                    <h3>Café</h3>
+                    <p>Café americano tradicional caliente.</p>
+                    <span>$40</span>
+                </div>
+                <div class="platillo">
+                    <img src="img/Raspado.png" alt="Raspado con leche">
+                    <h3>Raspado con leche</h3>
+                    <p>Granizado dulce con leche condensada, sabores variados.</p>
+                    <span>$65</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bloque izquierda">
+            <p>&copy; 2025, todos los derechos reservados</p>
+            <p><a href="index.html">CENADURÍA CHAYITO</a></p>
+        </div>
+
+        <div class="footer-bloque derecha">
+            <p>
+                Teléfono:
+                <a href="https://wa.me/526242386670" class="redes-sociales" target="_blank">(52) 624-238-6670</a>
+            </p>
+            <p>
+                Instagram:
+                <a href="https://www.instagram.com/cenaduriachayito/" class="redes-sociales"
+                    target="_blank">@cenaduriachayito</a>
+            </p>
+        </div>
+    </footer>
+
+    <div id="popup-error" class="popup-error oculto">
+        <div class="popup-contenido">
+            <p id="popup-mensaje">Aquí va el mensaje de error</p>
+            <button id="popup-aceptar-error">Aceptar</button>
+        </div>
+    </div>
+    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
+            </p>
+            <button id="redirect-popup-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
+            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!-- Popup de cierre de sesión -->
+
+
+    <script>
+        function mostrar(id) {
+            const secciones = document.querySelectorAll('.menu-destacado');
+            secciones.forEach(sec => sec.classList.remove('seccion-visible'));
+            secciones.forEach(sec => sec.classList.add('seccion-oculta'));
+            document.getElementById(id).classList.remove('seccion-oculta');
+            document.getElementById(id).classList.add('seccion-visible');
+        }
+    </script>
+    <script src="js/PantallaCarga.js"></script>
+    <script type="module" src="js/Sesion.js"></script>
+    <script type="module" src="js/verificarSesion.js"></script>
+    <script type="module" src="js/perfilDropdown.js"></script>
+</body>
+
+</html>

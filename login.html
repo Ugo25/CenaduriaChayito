@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Cenaduría Chayito</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="body-repeat">
+    <div id="pantalla-carga">
+        <img src="img/logobueno.png" alt="Cargando..." class="logo-carga" />
+    </div>
+
+    <header>
+        <a href="index.html">
+            <div class="logo header-logo">
+                <img src="img/logoblanco.png" alt="Logo" class="tamanio-logo">
+            </div>
+        </a>
+        <div class="header-menu">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="borde-menu">Inicio</a></li>
+                    <li><a href="Menú.html" class="borde-menu">Menú</a></li>
+                    <li><a href="promociones.html" class="borde-menu">Promociones</a></li>
+                    <li><a id="link-facturacion" class="borde-menu">Facturación</a></li>
+
+                    <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- PERFIL CON MENÚ DESPLEGABLE -->
+        <div class="contenedor-inicio-perfil">
+            <div class="perfil-dropdown">
+                <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+                <div id="menu-perfil" class="menu-perfil">
+                    <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                    <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                    <a href="login.html" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="contenedor-login">
+        <div class="mensaje-login">
+            <h1>¡Bienvenido a la tradición del sabor!</h1>
+            <p>Inicia sesión para disfrutar de nuestros platillos auténticos con todo el sabor de Mazatlán.</p>
+        </div>
+
+        <div class="formulario-login">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email">
+
+                <label for="password">Contraseña</label>
+                <input type="password" id="password">
+
+                <button type="submit">Entrar</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-bloque izquierda">
+            <p>&copy; 2025, todos los derechos reservados</p>
+            <p><a href="index.html">CENADURÍA CHAYITO</a></p>
+        </div>
+
+        <div class="footer-bloque derecha">
+            <p>
+                Teléfono:
+                <a href="https://wa.me/526242386670" class="redes-sociales" target="_blank">(52) 624-238-6670</a>
+            </p>
+            <p>
+                Instagram:
+                <a href="https://www.instagram.com/cenaduriachayito/" class="redes-sociales"
+                    target="_blank">@cenaduriachayito</a>
+            </p>
+        </div>
+    </footer>
+
+    <div id="popup-error" class="popup-error oculto">
+        <div class="popup-content">
+            <p id="popup-mensaje">Aquí va el mensaje de error</p>
+            <button id="popup-aceptar-error">Aceptar</button>
+        </div>
+    </div>
+    <div id="modal-general-error" class="modal-error oculto">
+        <div class="modal-content">
+            <p id="modal-general-mensaje">Aquí va el mensaje del modal general.</p>
+            <button id="modal-general-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
+            </p>
+            <button id="redirect-popup-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
+            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!-- Popup de cierre de sesión -->
+
+
+    <script src="js/PantallaCarga.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script type="module" src="js/ValidacionSesion.js"></script>
+    <script type="module" src="js/Sesion.js"></script>
+    <script type="module" src="js/verificarSesion.js"></script>
+    <script type="module" src="js/perfilDropdown.js"></script>
+
+</body>
+
+</html>

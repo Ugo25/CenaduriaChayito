@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones Exclusivas - Tu Empresa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="pantalla-carga">
+        <img src="img/logobueno.png" alt="Cargando..." class="logo-carga" />
+    </div>
+
+    <header>
+        <a href="index.html">
+            <div class="logo , header-logo">
+                <img src="img/logoblanco.png" alt="Logo" class="tamanio-logo">
+            </div>
+        </a>
+        <div class="header-menu">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="borde-menu">Inicio</a></li>
+                    <li><a href="Menú.html" class="borde-menu">Menú</a></li>
+                    <li><a href="promociones.html" class="borde-menu">Promociones</a></li>
+                    <li><a id="link-facturacion" class="borde-menu">Facturación</a></li>
+                    <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- PERFIL CON MENÚ DESPLEGABLE -->
+        <div class="contenedor-inicio-perfil">
+            <div class="perfil-dropdown">
+                <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+                <div id="menu-perfil" class="menu-perfil">
+                    <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                    <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                    <a href="login.html" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="promo-container">
+        <section class="promo-card fade-in" data-delay="0">
+            <div class="promo-image-wrapper">
+                <img src="img/Antojitos.png" alt="Promoción Producto 1">
+            </div>
+            <div class="promo-content">
+                <h2>Envío Gratis en Tu Primera Compra</h2>
+                <p>Usa el código: **ENVIOFREE** al finalizar tu pedido. Válido solo para nuevos clientes.</p>
+                <span class="promo-countdown" data-end="2025-07-31T23:59:59">Tiempo restante:</span>
+                <a href="#" class="promo-button">¡Comprar Ahora!</a>
+            </div>
+        </section>
+
+        <section class="promo-card fade-in" data-delay="100">
+            <div class="promo-image-wrapper">
+                <img src="img/IMAGEN SLIDER.jpg" alt="Promoción Servicio 2">
+            </div>
+            <div class="promo-content">
+                <h2>20% de Descuento en Servicios Seleccionados</h2>
+                <p>Oferta válida hasta agotar existencias. Consulta términos y condiciones.</p>
+                <span class="promo-tag hot">¡Popular!</span>
+                <a href="#" class="promo-button secondary">Ver Servicios</a>
+            </div>
+        </section>
+
+        <section class="promo-card fade-in" data-delay="200">
+            <div class="promo-image-wrapper">
+                <img src="img/sesos.png" alt="Promoción Producto 3">
+            </div>
+            <div class="promo-content">
+                <h2>Oferta 3x2 en Tacos</h2>
+                <p>Lleva 3 y paga solo 2.</p>
+                <span class="promo-tag new">¡Nuevo!</span>
+                <a href="#" class="promo-button">Explorar</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2025, todos los derechos reservados
+            <a href="index.html">CENADURÍA CHAYITO</a>
+        </p>
+
+        <p>
+            Teléfono:
+            <a href="https://wa.me/526242386670" class="redes-sociales" target="_blank">(52) 624-238-6670</a> |
+            Instagram:
+            <a href="https://www.instagram.com/cenaduriachayito/" class="redes-sociales"
+                target="_blank">@cenaduriachayito</a>
+        </p>
+    </footer>
+
+    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
+            </p>
+            <button id="redirect-popup-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
+            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!-- Popup de cierre de sesión -->
+
+    <script src="js/script.js"></script>
+    <script src="js/PantallaCarga.js"></script>
+    <script type="module" src="js/Sesion.js"></script>
+    <script type="module" src="js/verificarSesion.js"></script>
+    <script type="module" src="js/perfilDropdown.js"></script>
+</body>
+
+</html>
