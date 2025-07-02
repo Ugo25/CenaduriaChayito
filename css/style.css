@@ -11,7 +11,16 @@ body {
     /* Fondo general claro */
     color: #333;
     /* Texto oscuro */
+    display: flex;
+    /* Para Sticky Footer */
+    flex-direction: column;
+    /* Para Sticky Footer */
+    min-height: 100vh;
+    /* Para Sticky Footer */
+    overflow-x: hidden;
+    /* Evita el scroll horizontal por desbordamiento */
 }
+
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
