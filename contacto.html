@@ -7,68 +7,6 @@
     <title>Contacto - Cenaduría Chayito</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-
-    <style>
-        .oculto {
-            display: none !important;
-        }
-
-        .bloqueado {
-            overflow: hidden;
-            /* Para prevenir el scroll del body cuando el modal está activo */
-        }
-
-        /* Estilos básicos para el modal, si no están ya en tu CSS */
-        #modal-general-error {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Fondo semitransparente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            /* Asegura que esté por encima de todo */
-        }
-
-        #modal-general-error .popup-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-sizing: border-box;
-            /* Incluye padding en el ancho */
-        }
-
-        #modal-general-error #modal-general-mensaje {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        #modal-general-error #modal-general-aceptar {
-            background-color: #A0522D;
-            /* Color de tu botón "Enviar Mensaje" */
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-
-        #modal-general-error #modal-general-aceptar:hover {
-            background-color: #8B4513;
-            /* Un tono más oscuro al pasar el ratón */
-        }
-    </style>
 </head>
 
 <body>
@@ -93,14 +31,12 @@
                 </ul>
             </nav>
         </div>
-        <div class="contenedor-inicio-perfil">
-            <div class="perfil-dropdown">
-                <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
-                <div id="menu-perfil" class="menu-perfil">
-                    <a href="login.html" id="opcion-login">Iniciar sesión</a>
-                    <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
-                    <a href="#" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
-                </div>
+        <div class="perfil-dropdown">
+            <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+            <div class="menu-perfil" id="menu-perfil">
+                <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                <a href="#" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
             </div>
         </div>
     </header>
@@ -193,6 +129,33 @@
             </p>
         </div>
     </footer>
+    <div id="popup-error" class="popup-error oculto">
+        <div class="popup-content">
+            <p id="popup-mensaje">Aquí va el mensaje de error</p>
+            <button id="popup-aceptar-error">Aceptar</button>
+        </div>
+    </div>
+    <div id="modal-general-error" class="modal-error oculto">
+        <div class="modal-content">
+            <p id="modal-general-mensaje">Aquí va el mensaje del modal general.</p>
+            <button id="modal-general-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
+            </p>
+            <button id="redirect-popup-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
+            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+        </div>
+    </div>
 
     <div id="modal-general-error" class="popup-error oculto">
         <div class="popup-content">
