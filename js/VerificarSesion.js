@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sesionActiva === "true") {
         // Si la sesión está activa, cambiar el enlace de facturación a facturacion.html
         if (enlaceFacturacion) {
-            enlaceFacturacion.setAttribute("href", "index.html");
+            enlaceFacturacion.setAttribute("href", "facturacion.html");
         }
 
         // Mostrar el botón de cerrar sesión
