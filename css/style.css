@@ -253,7 +253,7 @@ nav ul li a:hover {
 
 .carrusel {
     position: relative;
-    width: 600px;
+    width: 1200px;
     /* Cambia el tamaño del slider */
     margin: 50px auto;
     /* Centrado horizontal */
@@ -1307,41 +1307,7 @@ footer .redes-sociales {
 
 /* ====== CARRUSEL DE IMÁGENES ====== */
 
-.carrusel {
-    position: relative;
-    width: 1521px;
-    /* Cambia el tamaño del slider */
-    margin: -0px auto;
-    /* Centrado horizontal */
-    overflow: hidden;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
-.contenedor-slides {
-    display: flex;
-    transition: fade 0.5s ease;
-}
-
-.slide {
-    min-width: 100%;
-    display: none;
-}
-
-.slide.activo {
-    display: block;
-}
-
-.slide img {
-    width: 100%;
-    display: block;
-    border-radius: 0px;
-    object-fit: cover;
-    /* Recorta manteniendo proporción */
-    max-height: 300px;
-    min-height: 300px;
-    /* Esto es para poder mantener la misma dimension con todas las imagenes */
-}
 
 .boton {
     position: absolute;
@@ -1856,43 +1822,6 @@ body {
     }
 }
 
-/* ====== CARRUSEL DE IMÁGENES ====== */
-
-.carrusel {
-    position: relative;
-    width: 1521px;
-    /* Cambia el tamaño del slider */
-    margin: -0px auto;
-    /* Centrado horizontal */
-    overflow: hidden;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.contenedor-slides {
-    display: flex;
-    transition: fade 0.5s ease;
-}
-
-.slide {
-    min-width: 100%;
-    display: none;
-}
-
-.slide.activo {
-    display: block;
-}
-
-.slide img {
-    width: 100%;
-    display: block;
-    border-radius: 0px;
-    object-fit: cover;
-    /* Recorta manteniendo proporción */
-    max-height: 300px;
-    min-height: 300px;
-    /* Esto es para poder mantener la misma dimension con todas las imagenes */
-}
 
 .boton {
     position: absolute;
