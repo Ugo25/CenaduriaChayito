@@ -37,18 +37,15 @@ a {
 /* ====== ENCABEZADO ====== */
 header {
     background-color: #5a3102;
-    /* Color café tradicional mexicano */
     color: white;
     padding: 15px 20px;
-    /* Ajustado padding */
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    /* Permite que los elementos se envuelvan */
+    /* Asegura que los elementos se ajusten */
     gap: 15px;
-    /* Espacio entre elementos del header */
 }
 
 .header-logo {
@@ -74,17 +71,46 @@ header {
     /* Centra los items si es posible */
 }
 
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        /* En pantallas pequeñas, los items se apilan */
+    }
+
+    .tamanio-logo {
+        width: 80px;
+        /* Reducido para dispositivos más pequeños */
+        height: 80px;
+    }
+
+    .header-menu nav ul {
+        flex-direction: column;
+        /* El menú se apilará en lugar de estar en fila */
+    }
+
+    .header-logo {
+        margin-bottom: 10px;
+        /* Espacio adicional entre logo y menú */
+    }
+}
+
+
 .header-menu nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    /* Centra los elementos del menú */
-    gap: 15px;
-    /* Espacio entre items */
     flex-wrap: wrap;
-    /* Permite que los items del menú se envuelvan */
+    /* Permite que los elementos bajen si no caben */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+@media (max-width: 420px) {
+    .header-menu nav ul {
+        flex-direction: column;
+    }
 }
 
 .header-login {
@@ -102,22 +128,26 @@ header {
 
 .borde-menu {
     background-color: #5a3102;
-    /* fondo café por defecto */
     color: #FAFAFA;
-    /* texto claro */
     padding: 10px 15px;
-    /* Ajustado padding */
     border: none;
     border-radius: 14px;
     font-weight: 500;
     font-size: 15px;
-    /* Ajustado tamaño de fuente */
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 3px;
-    /* Ajustado margen */
     white-space: nowrap;
     /* Evita que el texto se rompa */
+}
+
+@media (max-width: 768px) {
+    .borde-menu {
+        font-size: 13px;
+        /* Ajustar el tamaño de la fuente */
+        padding: 8px 12px;
+        /* Reducir padding en dispositivos móviles */
+    }
 }
 
 .borde-menu:hover {
@@ -513,8 +543,8 @@ nav ul li a:hover {
 .formulario {
     background: #fff;
     max-width: 440px;
-    margin: 0 auto 26px auto;
-    padding: 38px 32px 28px 32px;
+    margin: 0 auto;
+    padding: 38px 32px;
     border-radius: 20px;
     box-shadow: 0 4px 18px rgba(90, 49, 2, 0.13);
     display: flex;
@@ -549,6 +579,29 @@ nav ul li a:hover {
     transition: border 0.15s;
 }
 
+@media (max-width: 768px) {
+    .formulario {
+        padding: 20px 15px;
+    }
+
+    .campo {
+        flex: 1 1 100%;
+        /* Los campos ocuparán el 100% del ancho disponible */
+    }
+
+    .campo label {
+        font-size: 14px;
+    }
+
+    .campo input,
+    .campo select {
+        font-size: 14px;
+        /* Reducir tamaño de fuente para móviles */
+        padding: 8px;
+        /* Reducir padding en móviles */
+    }
+}
+
 .campo input:focus,
 .campo select:focus {
     border: 1.5px solid #7d4c12;
@@ -572,6 +625,21 @@ nav ul li a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.17s;
+}
+
+@media (max-width: 768px) {
+    .botones {
+        flex-direction: column;
+        /* Los botones se apilan en pantallas pequeñas */
+    }
+
+    .btn-verde,
+    .btn-azul {
+        width: 100%;
+        /* Los botones ocupan el 100% del ancho disponible */
+        padding: 15px 0;
+        /* Ajuste de padding */
+    }
 }
 
 .btn-verde {
@@ -899,6 +967,20 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        /* Los elementos se apilan en pantallas pequeñas */
+        text-align: center;
+        /* Centrado del contenido */
+    }
+
+    .footer-bloque {
+        flex: 1;
+        text-align: center;
+    }
 }
 
 .footer-bloque {
@@ -1422,12 +1504,13 @@ footer .redes-sociales {
 
 .carrusel {
     position: relative;
-    width: 1521px;
-    /* Cambia el tamaño del slider */
-    margin: -0px auto;
-    /* Centrado horizontal */
+    width: 100%;
+    /* Ocupa el 100% del contenedor */
+    max-width: 600px;
+    /* Limita el tamaño máximo */
+    margin: 50px auto;
     overflow: hidden;
-    border-radius: 0px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -1447,13 +1530,22 @@ footer .redes-sociales {
 
 .slide img {
     width: 100%;
-    display: block;
-    border-radius: 0px;
+    height: auto;
+    /* Ajuste automático del alto */
     object-fit: cover;
-    /* Recorta manteniendo proporción */
-    max-height: 300px;
-    min-height: 300px;
-    /* Esto es para poder mantener la misma dimension con todas las imagenes */
+}
+
+@media (max-width: 768px) {
+    .carrusel {
+        max-width: 100%;
+        /* Asegura que el carrusel ocupe todo el ancho en pantallas pequeñas */
+        margin: 30px auto;
+    }
+
+    .boton {
+        font-size: 14px;
+        /* Reducir el tamaño de los botones */
+    }
 }
 
 .boton {
