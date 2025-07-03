@@ -43,21 +43,26 @@ document.querySelectorAll("a[href]").forEach((enlace) => {
         }
     });
 });
-document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = window.location.pathname.split("/").pop();
-    const menuLinks = document.querySelectorAll('.borde-menu');
 
-    menuLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href) {
-            const linkFile = href.split("/").pop();
-            if (linkFile === currentPage) {
-                link.classList.add('activo');
-            }
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".borde-menu");
+    let currentPath = window.location.pathname;
+
+    // Extrae solo el nombre del archivo (o vacío si estás en "/")
+    let currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1);
+
+    // Si está vacío (caso de la raíz), asumimos que es "index.html"
+    if (currentPage === "") currentPage = "index.html";
+
+    links.forEach(link => {
+        const href = link.getAttribute("href");
+
+        // Compara solo el nombre del archivo
+        if (href === currentPage) {
+            link.classList.add("activo");
+        } else {
+            link.classList.remove("activo");
         }
     });
 });
-
-
-
 
