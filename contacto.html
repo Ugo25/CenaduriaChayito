@@ -5,8 +5,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto - Cenaduría Chayito</title>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        .oculto {
+            display: none !important;
+        }
+
+        .bloqueado {
+            overflow: hidden;
+            /* Para prevenir el scroll del body cuando el modal está activo */
+        }
+
+        /* Estilos básicos para el modal, si no están ya en tu CSS */
+        #modal-general-error {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Fondo semitransparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Asegura que esté por encima de todo */
+        }
+
+        #modal-general-error .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-sizing: border-box;
+            /* Incluye padding en el ancho */
+        }
+
+        #modal-general-error #modal-general-mensaje {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #modal-general-error #modal-general-aceptar {
+            background-color: #A0522D;
+            /* Color de tu botón "Enviar Mensaje" */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #modal-general-error #modal-general-aceptar:hover {
+            background-color: #8B4513;
+            /* Un tono más oscuro al pasar el ratón */
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +99,7 @@
                 <div id="menu-perfil" class="menu-perfil">
                     <a href="login.html" id="opcion-login">Iniciar sesión</a>
                     <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
-                    <a href="login.html" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
+                    <a href="#" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
                 </div>
             </div>
         </div>
@@ -52,22 +114,22 @@
             <div class="contenido-principal-contacto">
                 <div class="formulario-contacto">
                     <h2>Envíanos un mensaje</h2>
-                    <form action="#" method="POST">
+                    <form id="contact-form-custom" method="POST">
                         <div class="grupo-formulario">
-                            <label for="nombre">Nombre completo:</label>
-                            <input type="text" id="nombre" name="nombre">
+                            <label for="full_name_input">Nombre completo:</label>
+                            <input type="text" id="full_name_input" name="user_name" required />
                         </div>
                         <div class="grupo-formulario">
-                            <label for="email">Correo electrónico:</label>
-                            <input type="email" id="email" name="email">
+                            <label for="user_email_input">Correo electrónico:</label>
+                            <input type="email" id="user_email_input" name="user_email" required />
                         </div>
                         <div class="grupo-formulario">
-                            <label for="telefono">Teléfono (opcional):</label>
-                            <input type="tel" id="telefono" name="telefono">
+                            <label for="phone_number_input">Teléfono (opcional):</label>
+                            <input type="tel" id="phone_number_input" name="phone_number" />
                         </div>
                         <div class="grupo-formulario">
-                            <label for="mensaje">Tu mensaje:</label>
-                            <textarea id="mensaje" name="mensaje" rows="6"></textarea>
+                            <label for="user_message_textarea">Tu mensaje:</label>
+                            <textarea id="user_message_textarea" name="user_message" rows="6" required></textarea>
                         </div>
                         <button type="submit" class="boton-enviar">Enviar Mensaje</button>
                     </form>
@@ -115,7 +177,7 @@
 
     <footer>
         <div class="footer-bloque izquierda">
-            <p>&copy; 2025, todos los derechos reservados</p>
+            <p>© 2025, todos los derechos reservados</p>
             <p><a href="index.html">CENADURÍA CHAYITO</a></p>
         </div>
 
@@ -132,31 +194,10 @@
         </div>
     </footer>
 
-    <div id="popup-error" class="popup-error oculto">
+    <div id="modal-general-error" class="popup-error oculto">
         <div class="popup-content">
-            <p id="popup-mensaje">Aquí va el mensaje de error</p>
-            <button id="popup-aceptar-error">Aceptar</button>
-        </div>
-    </div>
-    <div id="modal-general-error" class="modal-error oculto">
-        <div class="modal-content">
-            <p id="modal-general-mensaje">Aquí va el mensaje del modal general.</p>
+            <p id="modal-general-mensaje">Aquí va el mensaje de error</p>
             <button id="modal-general-aceptar">Aceptar</button>
-        </div>
-    </div>
-
-    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
-        <div class="redirect-content">
-            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
-            </p>
-            <button id="redirect-popup-aceptar">Aceptar</button>
-        </div>
-    </div>
-
-    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
-        <div class="redirect-content">
-            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
-            <button id="redirect-popup-salida-aceptar">Aceptar</button>
         </div>
     </div>
 
@@ -164,6 +205,7 @@
     <script type="module" src="js/Sesion.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
+    <script type="module" src="js/contacto.js"></script>
 </body>
 
 </html>

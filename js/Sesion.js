@@ -58,7 +58,7 @@ async function loginConEmail(event) {
 
     mostrarPopup("Bienvenido", "Inicio de sesión exitoso.");
     setTimeout(() => {
-        window.location.href = 'facturacion.html';
+        window.location.href = 'index.html';
     }, 1000);
 }
 
