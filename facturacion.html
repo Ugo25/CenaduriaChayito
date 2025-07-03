@@ -41,10 +41,16 @@
                 </ul>
             </nav>
         </div>
-        <div class="contenedor-inicio-perfil">
-            <a id="perfil-link" href="login.html" class="borde-menu">
-                <img id="perfil-icon" src="img/mounstro.png" class="logo-perfil" />
-            </a>
+
+        <div class="perfil-dropdown">
+            <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+            <div class="menu-perfil" id="menu-perfil">
+                <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                <a href="#" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
+
+
+            </div>
         </div>
     </header>
 
@@ -208,6 +214,8 @@
     <script src="js/PantallaCarga.js"></script>
     <script type="module" src="js/Sesion.js"></script>
     <script type="module" src="js/factura.js"></script>
+    <script type="module" src="js/verificarSesion.js"></script>
+    <script type="module" src="js/perfilDropdown.js"></script>
 
 
 </body>

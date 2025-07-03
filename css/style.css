@@ -11,16 +11,7 @@ body {
     /* Fondo general claro */
     color: #333;
     /* Texto oscuro */
-    display: flex;
-    /* Para Sticky Footer */
-    flex-direction: column;
-    /* Para Sticky Footer */
-    min-height: 100vh;
-    /* Para Sticky Footer */
-    overflow-x: hidden;
-    /* Evita el scroll horizontal por desbordamiento */
 }
-
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -37,88 +28,38 @@ a {
 /* ====== ENCABEZADO ====== */
 header {
     background-color: #5a3102;
+    /* Color café tradicional mexicano */
     color: white;
-    padding: 15px 20px;
+    padding: 20px;
+    border-radius: 0 0 0 0;
     text-align: center;
+    max-height: 125px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    /* Asegura que los elementos se ajusten */
-    gap: 15px;
+    background-color: #5a3102;
 }
 
 .header-logo {
-    /* Eliminar posiciones fijas para responsividad */
-    padding: 0;
-    flex-shrink: 0;
-    /* No permite que el logo se encoja */
+    position: relative;
+    padding: 0px;
+    right: 0px;
+    top: 5px;
 }
 
 .tamanio-logo {
-    width: 100px;
-    /* Reducido para mejor responsividad */
-    height: 100px;
-    display: block;
-    /* Elimina espacio extra */
+    width: 150px;
+    height: 150px;
 }
 
 .header-menu {
-    /* Eliminar posiciones fijas */
-    flex-grow: 1;
-    /* Permite que el menú crezca */
-    text-align: center;
-    /* Centra los items si es posible */
-}
-
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        /* En pantallas pequeñas, los items se apilan */
-    }
-
-    .tamanio-logo {
-        width: 80px;
-        /* Reducido para dispositivos más pequeños */
-        height: 80px;
-    }
-
-    .header-menu nav ul {
-        flex-direction: column;
-        /* El menú se apilará en lugar de estar en fila */
-    }
-
-    .header-logo {
-        margin-bottom: 10px;
-        /* Espacio adicional entre logo y menú */
-    }
-}
-
-
-.header-menu nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    /* Permite que los elementos bajen si no caben */
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-@media (max-width: 420px) {
-    .header-menu nav ul {
-        flex-direction: column;
-    }
+    position: relative;
+    top: 0px;
 }
 
 .header-login {
-    /* Eliminar posiciones fijas */
-    flex-shrink: 0;
-    /* No permite que el login se encoja */
-    margin-left: auto;
-    /* Empuja a la derecha cuando hay espacio */
+    position: relative;
+    left: 450px;
 }
 
 .logo {
@@ -128,26 +69,17 @@ header {
 
 .borde-menu {
     background-color: #5a3102;
+    /* fondo café por defecto */
     color: #FAFAFA;
-    padding: 10px 15px;
+    /* texto claro */
+    padding: 10px 20px;
     border: none;
     border-radius: 14px;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    margin: 3px;
-    white-space: nowrap;
-    /* Evita que el texto se rompa */
-}
-
-@media (max-width: 768px) {
-    .borde-menu {
-        font-size: 13px;
-        /* Ajustar el tamaño de la fuente */
-        padding: 8px 12px;
-        /* Reducir padding en dispositivos móviles */
-    }
+    margin: 5px;
 }
 
 .borde-menu:hover {
@@ -162,9 +94,8 @@ header {
 }
 
 .logo-perfil {
-    width: 45px;
-    /* Ajustado tamaño */
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -174,6 +105,13 @@ header {
     position: relative;
     display: inline-block;
     margin-left: 10px;
+}
+
+.logo-perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 /* Ícono de información */
@@ -204,15 +142,6 @@ header {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     z-index: 999;
-    /* Asegura que el tooltip se posicione correctamente en pantallas pequeñas */
-    white-space: normal;
-    /* Permite que el texto se envuelva */
-    left: auto;
-    /* Restablecer left */
-    right: 0;
-    /* Alinea a la derecha del contenedor en móvil */
-    transform: translateX(0);
-    /* Restablecer transformación */
 }
 
 /* Mostrar tooltip cuando el mouse está sobre .info-container */
@@ -234,11 +163,20 @@ header {
     line-height: 1.4;
 }
 
+.logo-info:hover {
+    background-color: #7a4a1a;
+}
+
+
+
+
+
+
+
 .contenedor-inicio-perfil {
     display: flex;
     align-items: center;
 }
-
 
 
 
@@ -543,8 +481,8 @@ nav ul li a:hover {
 .formulario {
     background: #fff;
     max-width: 440px;
-    margin: 0 auto;
-    padding: 38px 32px;
+    margin: 0 auto 26px auto;
+    padding: 38px 32px 28px 32px;
     border-radius: 20px;
     box-shadow: 0 4px 18px rgba(90, 49, 2, 0.13);
     display: flex;
@@ -579,29 +517,6 @@ nav ul li a:hover {
     transition: border 0.15s;
 }
 
-@media (max-width: 768px) {
-    .formulario {
-        padding: 20px 15px;
-    }
-
-    .campo {
-        flex: 1 1 100%;
-        /* Los campos ocuparán el 100% del ancho disponible */
-    }
-
-    .campo label {
-        font-size: 14px;
-    }
-
-    .campo input,
-    .campo select {
-        font-size: 14px;
-        /* Reducir tamaño de fuente para móviles */
-        padding: 8px;
-        /* Reducir padding en móviles */
-    }
-}
-
 .campo input:focus,
 .campo select:focus {
     border: 1.5px solid #7d4c12;
@@ -625,21 +540,6 @@ nav ul li a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.17s;
-}
-
-@media (max-width: 768px) {
-    .botones {
-        flex-direction: column;
-        /* Los botones se apilan en pantallas pequeñas */
-    }
-
-    .btn-verde,
-    .btn-azul {
-        width: 100%;
-        /* Los botones ocupan el 100% del ancho disponible */
-        padding: 15px 0;
-        /* Ajuste de padding */
-    }
 }
 
 .btn-verde {
@@ -969,20 +869,6 @@ footer {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    footer {
-        flex-direction: column;
-        /* Los elementos se apilan en pantallas pequeñas */
-        text-align: center;
-        /* Centrado del contenido */
-    }
-
-    .footer-bloque {
-        flex: 1;
-        text-align: center;
-    }
-}
-
 .footer-bloque {
     flex: 1;
     padding: 10px;
@@ -1268,216 +1154,75 @@ footer .redes-sociales {
     display: block;
 }
 
-/* Estilos generales para la sección de contacto */
-.seccion-contacto {
-    padding: 40px 20px;
-    background-color: #f8f8f8;
-    /* Color de fondo claro para la sección */
-    color: #333;
-    /* Color de texto general */
-}
-
-.contenedor-contacto {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* ==== FORMULARIO DE CONTACTO ==== */
+.formulario-contacto {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px 40px;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.seccion-contacto h1 {
+.formulario-contacto h2 {
     text-align: center;
-    color: #8B4513;
-    /* Un marrón más oscuro para los títulos */
+    color: #5b2c06;
     margin-bottom: 20px;
-    font-size: 2.8em;
-    font-weight: bold;
+    font-size: 28px;
 }
 
-.seccion-contacto .introduccion {
-    text-align: center;
-    font-size: 1.1em;
-    margin-bottom: 40px;
-    color: #555;
-    line-height: 1.6;
-}
-
-.contenido-principal-contacto {
+.formulario-contacto form {
     display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 50px;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.formulario-contacto,
-.informacion-adicional {
-    flex: 1;
-    min-width: 300px;
-}
-
-/* Estilos para el formulario de contacto */
-.formulario-contacto h2,
-.informacion-adicional h2,
-.mapa-ubicacion h2 {
-    color: #A0522D;
-    /* Un marrón intermedio para los subtítulos */
-    margin-bottom: 25px;
-    font-size: 2.2em;
-    border-bottom: 2px solid #D2B48C;
-    /* Línea decorativa */
-    padding-bottom: 10px;
-}
-
-.grupo-formulario {
-    margin-bottom: 20px;
-}
-
-.grupo-formulario label {
-    display: block;
-    margin-bottom: 8px;
+.formulario-contacto label {
     font-weight: bold;
-    color: #666;
-    font-size: 1em;
+    color: #4a2a08;
 }
 
-.grupo-formulario input[type="text"],
-.grupo-formulario input[type="email"],
-.grupo-formulario input[type="tel"],
-.grupo-formulario textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
+.formulario-contacto input {
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 1em;
-    box-sizing: border-box;
-    /* Asegura que el padding no aumente el ancho total */
-    transition: border-color 0.3s ease;
+    font-size: 16px;
+    background-color: #fdf8f3;
+    /* Color de fondo */
+    color: #4b2e1e;
+    /* Color del texto */
 }
 
-.grupo-formulario input[type="text"]:focus,
-.grupo-formulario input[type="email"]:focus,
-.grupo-formulario input[type="tel"]:focus,
-.grupo-formulario textarea:focus {
-    border-color: #8B4513;
-    /* Resaltar al enfocar */
-    outline: none;
-}
-
-.grupo-formulario textarea {
-    resize: vertical;
-    /* Permitir redimensionar verticalmente */
-}
-
-.boton-enviar {
-    background-color: #A0522D;
-    /* Color del botón principal */
+.formulario-contacto button {
+    padding: 10px;
+    background-color: #a05a19;
     color: white;
-    padding: 14px 25px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: block;
-    /* Ocupa todo el ancho disponible */
-    width: 100%;
-    box-sizing: border-box;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-.boton-enviar:hover {
-    background-color: #8B4513;
-    /* Color más oscuro al pasar el ratón */
-    transform: translateY(-2px);
-    /* Pequeño efecto de elevación */
+.formulario-contacto button:hover {
+    background-color: #8c4d15;
 }
 
-/* Estilos para la información adicional */
-.informacion-adicional .info-item {
-    margin-bottom: 25px;
-}
-
-.informacion-adicional .info-item h3 {
-    color: #8B4513;
-    margin-bottom: 8px;
-    font-size: 1.4em;
-}
-
-.informacion-adicional .info-item p {
-    font-size: 1.05em;
-    line-height: 1.7;
-}
-
-.informacion-adicional .info-item a {
-    color: #A0522D;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.informacion-adicional .info-item a:hover {
-    text-decoration: underline;
-    color: #8B4513;
-}
-
-/* Estilos para el mapa */
-.mapa-ubicacion {
-    margin-top: 40px;
+.formulario-contacto p {
+    margin-top: 15px;
     text-align: center;
+    font-size: 15px;
+    color: #333;
 }
 
-.mapa-ubicacion iframe {
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.formulario-contacto a {
+    color: #a05a19;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* Media Queries para responsividad */
-@media (max-width: 768px) {
-    .contenido-principal-contacto {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .formulario-contacto,
-    .informacion-adicional {
-        min-width: unset;
-        width: 100%;
-    }
-
-    .seccion-contacto h1 {
-        font-size: 2.2em;
-    }
-
-    .formulario-contacto h2,
-    .informacion-adicional h2,
-    .mapa-ubicacion h2 {
-        font-size: 1.8em;
-    }
-}
-
-@media (max-width: 480px) {
-    .seccion-contacto {
-        padding: 20px 15px;
-    }
-
-    .seccion-contacto h1 {
-        font-size: 1.8em;
-    }
-
-    .introduccion {
-        font-size: 1em;
-    }
-
-    .formulario-contacto h2,
-    .informacion-adicional h2,
-    .mapa-ubicacion h2 {
-        font-size: 1.5em;
-    }
-
-    .boton-enviar {
-        padding: 12px 20px;
-        font-size: 1em;
-    }
+.formulario-contacto a:hover {
+    text-decoration: underline;
 }
 
 /* Tamaño del logo en el loader */
@@ -1504,13 +1249,12 @@ footer .redes-sociales {
 
 .carrusel {
     position: relative;
-    width: 100%;
-    /* Ocupa el 100% del contenedor */
-    max-width: 600px;
-    /* Limita el tamaño máximo */
-    margin: 50px auto;
+    width: 1521px;
+    /* Cambia el tamaño del slider */
+    margin: -0px auto;
+    /* Centrado horizontal */
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -1530,22 +1274,13 @@ footer .redes-sociales {
 
 .slide img {
     width: 100%;
-    height: auto;
-    /* Ajuste automático del alto */
+    display: block;
+    border-radius: 0px;
     object-fit: cover;
-}
-
-@media (max-width: 768px) {
-    .carrusel {
-        max-width: 100%;
-        /* Asegura que el carrusel ocupe todo el ancho en pantallas pequeñas */
-        margin: 30px auto;
-    }
-
-    .boton {
-        font-size: 14px;
-        /* Reducir el tamaño de los botones */
-    }
+    /* Recorta manteniendo proporción */
+    max-height: 300px;
+    min-height: 300px;
+    /* Esto es para poder mantener la misma dimension con todas las imagenes */
 }
 
 .boton {

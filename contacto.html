@@ -28,9 +28,11 @@
                     <li><a href="promociones.html" class="borde-menu">Promociones</a></li>
                     <li><a id="link-facturacion" class="borde-menu">Facturación</a></li>
                     <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
+
                 </ul>
             </nav>
         </div>
+        <!-- PERFIL CON MENÚ DESPLEGABLE -->
         <div class="contenedor-inicio-perfil">
             <div class="perfil-dropdown">
                 <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
@@ -43,75 +45,19 @@
         </div>
     </header>
 
-    <main class="seccion-contacto">
-        <section class="contenedor-contacto">
-            <h1>Contáctanos</h1>
-            <p class="introduccion">¿Tienes alguna pregunta, sugerencia o simplemente quieres saludar? ¡Nos encantaría
-                saber de ti!</p>
+    <div class="formulario-contacto">
+        <h2>Contacto</h2>
+        <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" required>
 
-            <div class="contenido-principal-contacto">
-                <div class="formulario-contacto">
-                    <h2>Envíanos un mensaje</h2>
-                    <form action="#" method="POST">
-                        <div class="grupo-formulario">
-                            <label for="nombre">Nombre completo:</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="email">Correo electrónico:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="telefono">Teléfono (opcional):</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        <div class="grupo-formulario">
-                            <label for="mensaje">Tu mensaje:</label>
-                            <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
-                        </div>
-                        <button type="submit" class="boton-enviar">Enviar Mensaje</button>
-                    </form>
-                </div>
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" required>
 
-                <div class="informacion-adicional">
-                    <h2>Nuestra Información</h2>
-                    <div class="info-item">
-                        <h3>Dirección:</h3>
-                        <p>Avenida Principal #123, Colonia Centro</p>
-                        <p>Mazatlán, Sinaloa, México C.P. 82000</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Horario de Atención:</h3>
-                        <p>Lunes a Sábado: 8:00 AM - 10:00 PM</p>
-                        <p>Domingo: 9:00 AM - 8:00 PM</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Teléfono:</h3>
-                        <p><a href="tel:+526242386670">(52) 624-238-6670</a></p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Correo Electrónico:</h3>
-                        <p><a href="mailto:info@cenaduriachayito.com">info@cenaduriachayito.com</a></p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Síguenos en Redes Sociales:</h3>
-                        <p>
-                            <a href="https://www.instagram.com/cenaduriachayito/" target="_blank">Instagram</a> |
-                            <a href="https://www.facebook.com/cenaduriachayito/" target="_blank">Facebook</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mapa-ubicacion">
-                <h2>Encuéntranos en el mapa</h2>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.7828062590497!2d-106.42571478553655!3d23.23846618485292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8634a362f6d2f3d1%3A0x6b7c5b6b7c5b6b7c!2sMazatlan%2C%20Sinaloa%2C%20Mexico!5e0!3m2!1sen!2sus!4v1678912345678!5m2!1sen!2sus"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-    </main>
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Buscas algo más? <a href="facturacion.html">Factura aquí</a></p>
+    </div>
 
     <footer>
         <div class="footer-bloque izquierda">
@@ -133,30 +79,15 @@
     </footer>
 
     <div id="popup-error" class="popup-error oculto">
-        <div class="popup-content">
-            <p id="popup-mensaje">Aquí va el mensaje de error</p>
+        <div class="popup-contenido">
             <button id="popup-aceptar-error">Aceptar</button>
         </div>
     </div>
-    <div id="modal-general-error" class="modal-error oculto">
-        <div class="modal-content">
-            <p id="modal-general-mensaje">Aquí va el mensaje del modal general.</p>
-            <button id="modal-general-aceptar">Aceptar</button>
-        </div>
-    </div>
 
-    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
-        <div class="redirect-content">
-            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
-            </p>
-            <button id="redirect-popup-aceptar">Aceptar</button>
-        </div>
-    </div>
-
-    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
-        <div class="redirect-content">
-            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
-            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+    <!-- Popup de cierre de sesión -->
+    <div id="popup-salida" class="popup-error oculto">
+        <div class="popup-contenido">
+            <button id="popup-salida-aceptar">Aceptar</button>
         </div>
     </div>
 
@@ -164,6 +95,7 @@
     <script type="module" src="js/Sesion.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
+
 </body>
 
 </html>
