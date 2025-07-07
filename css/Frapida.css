@@ -1,0 +1,418 @@
+/*
+ * CSS Corregido para Cenaduría Chayito
+ * Este archivo se enfoca en el layout general (body), el formulario y los modales,
+ * RESPETANDO LOS DISEÑOS EXISTENTES DE HEADER Y FOOTER.
+ */
+
+/* --- 1. Estilos Generales y Reseteo (ESENCIALES para el layout) --- */
+html,
+body {
+    margin: 0;
+    /* Elimina el margen predeterminado del navegador */
+    padding: 0;
+    /* Elimina el relleno predeterminado del navegador */
+    height: 100%;
+    /* Asegura que html y body ocupen el 100% de la altura del viewport */
+    font-family: Arial, sans-serif;
+    /* Fuente preferida para todo el sitio */
+    box-sizing: border-box;
+    /* Incluye el relleno y el borde en el ancho y alto total del elemento */
+}
+
+/* Base del Body para el diseño Flexbox (Sticky Footer) */
+body {
+    display: flex;
+    /* Habilita Flexbox para el body */
+    flex-direction: column;
+    /* Organiza los hijos (encabezado, contenido principal, pie de página) en una columna */
+    min-height: 100vh;
+    /* Asegura que el body tenga al menos la altura del viewport (altura de la ventana visible) */
+}
+
+/* --- 2. Estilos del Área de Contenido Principal (.contenedor) --- */
+/* Este contenedor es CLAVE para empujar el footer hacia abajo,
+   y también contendrá el formulario de Facturación Rápida. */
+/* --- ESTILOS SÓLO PARA EL FORMULARIO DE FACTURACIÓN RÁPIDA --- */
+
+/* Contenedor del formulario */
+.contenedor.campo {
+    max-width: 500px;
+    /* Ancho máximo para el formulario. Esto define si se ve "apachurrado" o no. */
+    margin: 40px auto;
+    /* Centra el formulario horizontalmente y le da margen arriba/abajo. */
+    background: #fff;
+    /* Fondo blanco para el recuadro del formulario. */
+    padding: 25px;
+    /* Relleno interno para que el contenido no toque los bordes. */
+    border-radius: 10px;
+    /* Bordes redondeados para el recuadro. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para darle profundidad. */
+    box-sizing: border-box;
+    /* Importante: incluye padding y borde en el ancho total. */
+}
+
+/* Título del formulario */
+.contenedor.campo h2 {
+    /* Selector más específico para el h2 dentro del formulario */
+    text-align: center;
+    color: #5a3102;
+    /* Color específico para el título del formulario */
+    margin-bottom: 25px;
+}
+
+/* Etiquetas (Folio:, Importe:, etc.) */
+.contenedor.campo label {
+    /* Selector más específico para las labels dentro del formulario */
+    font-weight: bold;
+    margin-top: 15px;
+    /* Espacio encima de cada etiqueta */
+    display: block;
+    /* Cada etiqueta en su propia línea */
+    color: #555;
+}
+
+/* Campos de texto, número y select */
+.contenedor.campo input[type="text"],
+.contenedor.campo input[type="number"],
+.contenedor.campo select {
+    width: 100%;
+    /* Ocupa el 100% del ancho disponible del contenedor padre (.contenedor.campo) */
+    padding: 10px;
+    /* Relleno interno para los campos */
+    margin-top: 5px;
+    /* Espacio entre la etiqueta y el campo */
+    margin-bottom: 15px;
+    /* Espacio debajo de cada campo */
+    border: 1px solid #ccc;
+    /* Borde del campo */
+    border-radius: 6px;
+    /* Bordes redondeados del campo */
+    font-size: 1rem;
+    /* Tamaño de la fuente dentro del campo */
+    box-sizing: border-box;
+    /* Asegura que padding y borde se incluyan en el 100% del width */
+}
+
+/* Estilo al enfocar los campos */
+.contenedor.campo input[type="text"]:focus,
+.contenedor.campo input[type="number"]:focus,
+.contenedor.campo select:focus {
+    border-color: #A0522D;
+    outline: none;
+    box-shadow: 0 0 5px rgba(160, 82, 45, 0.25);
+}
+
+/* Botón "Generar Factura" */
+.contenedor.campo #btn-generar.btn-verde {
+    /* Selector muy específico para el botón del formulario */
+    display: block;
+    width: 100%;
+    /* Ocupa el 100% del ancho del formulario */
+    padding: 15px;
+    /* Relleno grande para el botón */
+    background-color: #4CAF50;
+    /* Color verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* Bordes ligeramente redondeados */
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    /* Espacio encima del botón */
+    transition: background-color 0.3s ease;
+}
+
+.contenedor.campo #btn-generar.btn-verde:hover {
+    background-color: #45a049;
+    /* Verde más oscuro al pasar el ratón */
+}
+
+
+/* --- 3. Estilos de Títulos y Formularios (dentro del .contenedor o .contenedor.campo) --- */
+
+h2 {
+    text-align: center;
+    color: #5a3102;
+    /* Color del título del formulario */
+    margin-bottom: 25px;
+    /* Espacio debajo del h2 */
+}
+
+h3 {
+    color: #A0522D;
+    /* Un color marrón claro para h3 (si se usa en otros formularios) */
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 18px;
+    /* Espacio entre grupos de formulario */
+}
+
+/* Etiquetas de los campos */
+label {
+    font-weight: bold;
+    margin-top: 15px;
+    /* Espacio superior para cada label */
+    display: block;
+    /* Cada label en su propia línea */
+    color: #555;
+    /* Color de texto para labels */
+}
+
+/* Campos de entrada de texto, número, email y select */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+/* Añadido para consistencia */
+select {
+    width: 100%;
+    /* Ocupa todo el ancho disponible del padre */
+    padding: 10px;
+    /* Relleno interno de los campos */
+    margin-top: 5px;
+    /* Espacio entre label y campo */
+    margin-bottom: 15px;
+    /* Espacio entre campo y siguiente label/elemento */
+    border: 1px solid #ccc;
+    /* Borde de los campos */
+    border-radius: 6px;
+    /* Esquinas redondeadas de los campos */
+    font-size: 1rem;
+    /* Tamaño de fuente para los campos */
+    /* box-sizing: border-box; ya definido en body */
+}
+
+/* Estilo al enfocar los campos */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #A0522D;
+    /* Borde de color al enfocar */
+    outline: none;
+    /* Elimina el contorno predeterminado del navegador */
+    box-shadow: 0 0 5px rgba(160, 82, 45, 0.25);
+    /* Sombra ligera al enfocar */
+}
+
+/* Texto informativo debajo de los campos */
+.info-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* --- 4. Estilos de Botones (General y Específicos) --- */
+
+/* Contenedor para grupos de botones */
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    /* Para alinear los botones horizontalmente */
+    justify-content: flex-end;
+    /* Alinea los botones a la derecha */
+    gap: 15px;
+    /* Espacio entre los botones */
+}
+
+/* Estilos generales para los botones */
+button {
+    /* Esta regla afecta a TODOS los botones sin una clase específica */
+    background-color: #28a745;
+    /* Color verde predeterminado para botones */
+    color: white;
+    padding: 12px;
+    /* Relleno general para botones */
+    width: 100%;
+    /* El botón por defecto ocupa todo el ancho */
+    border: none;
+    border-radius: 6px;
+    /* Bordes redondeados */
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+    /* Verde más oscuro al pasar el ratón */
+}
+
+/* Estilos específicos para botones con clases */
+.btn-verde {
+    /* Usado para "Generar Factura" */
+    background-color: #28a745;
+    /* Verde */
+    padding: 12px;
+    /* Alinear con el otro 'button' */
+    width: 100%;
+    /* Ocupa todo el ancho */
+    border-radius: 6px;
+    /* Alinear con el otro 'button' */
+    /* Ya hereda color, font-size, cursor, transition de la regla 'button' general */
+}
+
+.btn-verde:hover {
+    background-color: #218838;
+    /* Verde más oscuro al pasar el ratón */
+}
+
+.save-button {
+    background-color: #28a745;
+    /* Verde */
+    padding: 12px 25px;
+    /* Más padding para los botones de button-group */
+    width: auto;
+    /* Permite que el botón se ajuste a su contenido en un button-group */
+    border-radius: 8px;
+    /* Bordes ligeramente más redondeados que el botón general */
+    font-weight: bold;
+    /* Ya hereda color, font-size, cursor, transition de la regla 'button-group button' general */
+}
+
+.save-button:hover {
+    background-color: #218838;
+    /* Verde más oscuro al pasar el ratón */
+    transform: translateY(-1px);
+    /* Pequeño efecto de elevación */
+}
+
+.delete-button {
+    background-color: #dc3545;
+    /* Rojo */
+    padding: 12px 25px;
+    /* Más padding para los botones de button-group */
+    width: auto;
+    /* Permite que el botón se ajuste a su contenido en un button-group */
+    border-radius: 8px;
+    /* Bordes ligeramente más redondeados que el botón general */
+    font-weight: bold;
+    /* Ya hereda color, font-size, cursor, transition de la regla 'button-group button' general */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+    /* Rojo más oscuro al pasar el ratón */
+    transform: translateY(-1px);
+    /* Pequeño efecto de elevación */
+}
+
+/* --- 5. Estilos para los Modales (Popups) --- */
+
+.modal-error {
+    /* Clase para el fondo oscuro y centrado del modal */
+    position: fixed;
+    /* Fija el modal en la ventana */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo semitransparente oscuro */
+    display: flex;
+    /* Usa flexbox para centrar el contenido */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    z-index: 2000;
+    /* Asegura que el modal esté por encima de todo */
+}
+
+.modal-content {
+    /* Contenido real del modal (el recuadro blanco) */
+    background-color: white;
+    padding: 35px;
+    /* Más padding para el contenido */
+    border-radius: 10px;
+    /* Bordes más redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Sombra más pronunciada */
+    text-align: center;
+    max-width: 450px;
+    /* Ancho máximo del contenido del modal */
+    width: 90%;
+    /* Ancho responsivo */
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    /* Espacio debajo del texto del modal */
+    font-size: 1.1em;
+    color: #333;
+    /* Color de texto más suave */
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    /* Espacio horizontal entre los botones del modal */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Botones específicos dentro de los modales */
+#popup-aceptar-error,
+/* Botón para aceptar errores/éxitos */
+#popup-aceptar-exito {
+    background-color: #5C3D2B;
+    /* Color de tu marca */
+    color: white;
+}
+
+#popup-aceptar-error:hover,
+#popup-aceptar-exito:hover {
+    background-color: #4A3022;
+}
+
+#confirm-delete-yes {
+    /* Botón de confirmación de eliminación (rojo) */
+    background-color: #dc3545;
+    color: white;
+}
+
+#confirm-delete-yes:hover {
+    background-color: #c82333;
+}
+
+#confirm-delete-no {
+    /* Botón de cancelar eliminación (gris) */
+    background-color: #6c757d;
+    color: white;
+}
+
+#confirm-delete-no:hover {
+    background-color: #5a6268;
+}
+
+/* --- 6. Clases de Utilidad --- */
+
+/* Para ocultar elementos */
+.oculto {
+    display: none !important;
+    /* Asegura que se oculte correctamente (importante para anular otras reglas) */
+}
+
+/* Para deshabilitar visualmente y funcionalmente campos/elementos */
+input.bloqueado,
+select.bloqueado,
+.bloqueado {
+    background-color: #f0f0f0;
+    /* Fondo gris claro */
+    color: #666;
+    /* Texto más suave */
+    pointer-events: none;
+    /* Deshabilita interacciones del ratón (no se puede hacer clic) */
+    border: 1px solid #ccc;
+    /* Borde normal */
+    opacity: 0.7;
+    /* Ligeramente transparente para indicar deshabilitado */
+}

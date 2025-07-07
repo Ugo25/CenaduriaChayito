@@ -36,12 +36,22 @@ function mostrarPopup(titulo, mensaje) {
     }, 4000);
 }
 
-["nombres", "correo", "telefono", "contrasena"].forEach(id => {
+["nombres", "correo", "telefono", "password"].forEach(id => {
     const input = document.getElementById(id);
     input.addEventListener("input", () => {
         input.style.border = "";
     });
 });
+function calcularEdad(fechaNacimiento) {
+    const hoy = new Date();
+    const nacimiento = new Date(fechaNacimiento);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const m = hoy.getMonth() - nacimiento.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
+    }
+    return edad;
+}
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -49,7 +59,8 @@ form.addEventListener('submit', async (e) => {
     const nombres = document.getElementById('nombres');
     const email = document.getElementById('correo');
     const telefono = document.getElementById('telefono');
-    const password = document.getElementById('contrasena');
+    const password = document.getElementById('password');
+
 
     let errorCampos = [];
 
@@ -78,6 +89,17 @@ form.addEventListener('submit', async (e) => {
         mostrarPopup("Campos incompletos", "Corrige: " + errorCampos.join(", "));
         return;
     }
+    const fNacimiento = document.getElementById('fNacimiento').value;
+    if (!fNacimiento) {
+        mostrarPopup("Fecha requerida", "Por favor ingresa tu fecha de nacimiento.");
+        return;
+    }
+
+    const edad = calcularEdad(fNacimiento);
+    if (edad < 18) {
+        mostrarPopup("Edad mínima requerida", "Debes tener al menos 18 años para registrarte.");
+        return;
+    }
 
     // 🔍 Verificar si el correo ya está registrado
     const { data: existente, error: errorBusqueda } = await supabase // <-- Cambiado de 'client' a 'supabase'
@@ -98,11 +120,14 @@ form.addEventListener('submit', async (e) => {
     }
 
     // ✅ Crear cuenta en Auth
-    const { data: authData, error: authError } = await supabase.auth.signUp({ // <-- Cambiado de 'client' a 'supabase'
+    const { data: authData, error: authError } = await supabase.auth.signUp({
         email: email.value.trim(),
         password: password.value,
         options: {
-            data: { nombres: nombres.value.trim(), telefono: telefono.value.trim() }
+            data: {
+                nombres: nombres.value.trim(),
+                telefono: telefono.value.trim()
+            }
         }
     });
 
@@ -111,24 +136,12 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
-    const user = authData.user;
+    mostrarPopup("¡Registro exitoso!", "Redirijiendo...");
+    setTimeout(() => {
+        window.location.href = 'login.html';
+    }, 3000);
 
-    // ✅ Insertar en la tabla personalizada
-    const { error: insertError } = await supabase.from('Usuarios').insert([{ // <-- Cambiado de 'client' a 'supabase'
-        auth_id: user.id,
-        nombre: nombres.value.trim(),
-        correo: email.value.trim(),
-        telefono: telefono.value.trim()
-    }]);
 
-    if (insertError) {
-        mostrarPopup("Error al guardar", insertError.message);
-    } else {
-        mostrarPopup("¡Registro exitoso!", "Redirigiendo...");
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 2000);
-    }
 });
 
 

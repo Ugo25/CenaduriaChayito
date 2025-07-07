@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Popup de salida/cierre de sesión
     const redirectPopupSalida = document.getElementById("redirect-popup-salida"); // NUEVO ID
     const redirectMensajeSalida = document.getElementById("redirect-popup-salida-mensaje"); // NUEVO ID
-    const redirectBotonAceptarSalida = document.getElementById("redirect-popup-salida-aceptar"); // NUEVO ID
+    // Ya no necesitamos 'redirectBotonAceptarSalida' si el popup se cierra automáticamente
+    // const redirectBotonAceptarSalida = document.getElementById("redirect-popup-salida-aceptar"); // <--- ELIMINAR ESTA LÍNEA O COMENTARLA
 
     // Popup de error de redirección (para facturación sin sesión)
     const redirectPopupError = document.getElementById("redirect-popup-error"); // NUEVO ID
@@ -72,35 +73,44 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Sesión de Supabase cerrada.");
         }
 
-        if (redirectPopupSalida && redirectBotonAceptarSalida && redirectMensajeSalida) {
+        // --- INICIO DEL CÓDIGO CORREGIDO PARA EL POPUP DE SALIDA ---
+        // Se asegura de que los elementos del popup existan antes de intentar manipularlos
+        if (redirectPopupSalida && redirectMensajeSalida) {
             console.log("Elementos del popup de salida encontrados. Intentando mostrar...");
             redirectMensajeSalida.textContent = "Has cerrado sesión correctamente.";
-            redirectPopupSalida.classList.remove("redirect-hidden");
-            document.body.classList.add('bloqueado');
+            redirectPopupSalida.classList.remove("redirect-hidden"); // <--- AHORA SÍ SE HACE VISIBLE INMEDIATAMENTE
+            document.body.classList.add('bloqueado'); // Para bloquear el scroll del body
             console.log("Mostrando popup de salida. Clase redirect-hidden removida.");
 
-            redirectBotonAceptarSalida.onclick = () => {
-                console.log("Clic en Aceptar del popup de salida. Intentando ocultar...");
-                redirectPopupSalida.classList.add("redirect-hidden");
-                document.body.classList.remove('bloqueado');
-                console.log("Ocultando popup de salida. Clase redirect-hidden agregada.");
+            const tiempoVisible = 2500; // 2.5 segundos
 
+            setTimeout(() => {
+                console.log("Ocultando popup de salida después del temporizador.");
+                redirectPopupSalida.classList.add("redirect-hidden");
+                document.body.classList.remove('bloqueado'); // Desbloquea el scroll
+
+                // Usamos 'transitionend' para asegurar que la redirección ocurre después de la animación de ocultar
                 redirectPopupSalida.addEventListener('transitionend', function handler(event) {
-                    console.log("Evento 'transitionend' disparado para popup de salida. Propiedad:", event.propertyName);
-                    if (event.propertyName === 'opacity') {
-                        console.log("Redirigiendo a index.html desde popup de salida...");
+                    console.log("Evento 'transitionend' disparado para popup de salida después de ocultar. Propiedad:", event.propertyName);
+                    if (event.propertyName === 'opacity' || event.propertyName === 'visibility') { // Asegura que la transición relevante terminó
+                        console.log("Redirigiendo a index.html desde popup de salida después de ocultar...");
                         window.location.href = "index.html";
-                        redirectPopupSalida.removeEventListener('transitionend', handler);
+                        redirectPopupSalida.removeEventListener('transitionend', handler); // Importante para evitar múltiples ejecuciones
                     }
-                }, { once: true });
-            };
+                }, { once: true }); // { once: true } asegura que el listener se elimine automáticamente después de dispararse una vez
+            }, tiempoVisible); // <--- ¡Asegúrate de pasar el tiempo aquí!
         } else {
-            console.error("Popup de salida no encontrado o elementos internos faltantes, redirigiendo de inmediato.");
-            window.location.href = "index.html";
+            console.error("Popup de salida no encontrado o elementos internos faltantes. Redirigiendo de inmediato.");
+            window.location.href = "index.html"; // Redirige como fallback
         }
+        // --- FIN DEL CÓDIGO CORREGIDO PARA EL POPUP DE SALIDA ---
+
         actualizarMenuPerfil();
     });
 
+    // =================================================================
+    // EL CÓDIGO PARA linkFacturacion ES CORRECTO Y NO NECESITA CAMBIOS AQUÍ
+    // =================================================================
     const linkFacturacion = document.getElementById("link-facturacion");
     if (linkFacturacion) {
         linkFacturacion.addEventListener("click", (e) => {
@@ -111,28 +121,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
                 console.log("Acceso a facturación denegado: Sesión no activa.");
 
-                // Aquí ya no necesitamos redeclarar 'popup', 'aceptar', 'textoPopup'
-                // Ya tenemos las variables globales 'redirectPopupError', 'redirectBotonAceptarError', 'redirectMensajeError'
-
-                if (redirectPopupError && redirectBotonAceptarError && redirectMensajeError) { // Usar las variables globales
+                if (redirectPopupError && redirectBotonAceptarError && redirectMensajeError) {
                     console.log("Elementos del popup de error de facturación encontrados. Intentando mostrar...");
-                    redirectMensajeError.textContent = "Debes iniciar sesión para acceder a facturación."; // Usar la variable global
-                    redirectPopupError.classList.remove("redirect-hidden"); // Usar la variable global
+                    redirectMensajeError.textContent = "Debes iniciar sesión para acceder a facturación.";
+                    redirectPopupError.classList.remove("redirect-hidden");
                     document.body.classList.add('bloqueado');
                     console.log("Mostrando popup de error de facturación. Clase redirect-hidden removida.");
 
-                    redirectBotonAceptarError.onclick = () => { // Usar la variable global
+                    redirectBotonAceptarError.onclick = () => {
                         console.log("Clic en Aceptar del popup de error. Intentando ocultar...");
-                        redirectPopupError.classList.add("redirect-hidden"); // Usar la variable global
+                        redirectPopupError.classList.add("redirect-hidden");
                         document.body.classList.remove('bloqueado');
                         console.log("Ocultando popup de error. Clase redirect-hidden agregada.");
 
-                        redirectPopupError.addEventListener('transitionend', function handler(event) { // Usar la variable global
+                        redirectPopupError.addEventListener('transitionend', function handler(event) {
                             console.log("Evento 'transitionend' disparado para popup de error. Propiedad:", event.propertyName);
-                            if (event.propertyName === 'opacity') {
+                            if (event.propertyName === 'opacity' || event.propertyName === 'visibility') {
                                 console.log("Redirigiendo al login desde popup de error...");
                                 window.location.href = "login.html";
-                                redirectPopupError.removeEventListener('transitionend', handler); // Usar la variable global
+                                redirectPopupError.removeEventListener('transitionend', handler);
                             }
                         }, { once: true });
                     };

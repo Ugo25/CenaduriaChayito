@@ -52,6 +52,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (btnBuscar) {
         btnBuscar.addEventListener("click", buscarFactura);
     }
+
+    // Obtener y rellenar el perfil fiscal
+    const { data: perfil, error: perfilError } = await supabase
+        .from('Perfil')
+        .select('razon_social, rfc, uso_cfdi, regimen_fiscal, codigo_postal, correo_facturacion, telefono')
+        .eq('usuarios_id', session.user.id);
+
+
+    if (perfilError) {
+        console.warn("❌ No se pudo obtener el perfil fiscal:", perfilError.message);
+    } else if (perfil && perfil.length > 0) {
+        const campos = {
+            razon: perfil[0].razon_social ?? '',
+            rfc: perfil[0].rfc ?? '',
+            uso: perfil[0].uso_cfdi ?? '',
+            regimen: perfil[0].regimen_fiscal ?? '',
+            cp: perfil[0].codigo_postal ?? '',
+            correo: perfil[0].correo_facturacion ?? '',
+            telefono: perfil[0].telefono ?? ''
+        };
+
+        for (const id in campos) {
+            const input = document.getElementById(id);
+            if (input) {
+                input.value = campos[id];
+                if (input.tagName === 'SELECT') {
+                    input.disabled = true;
+                } else {
+                    input.readOnly = true;
+                }
+                input.classList.add('bloqueado');
+            }
+        }
+    }
+    else {
+        console.log("⚠️ No hay perfil registrado para este usuario.");
+        // Opcional: aquí podrías mostrar un mensaje visible
+    }
 });
 
 emailjs.init("rs24peo_7HUFvvNTR");
@@ -205,9 +243,9 @@ async function buscarFactura() {
         if (error || !data.length) return mostrarPopupError("⚠️ No se encontró ninguna factura con ese folio.");
         const factura = data[0];
         alert(`Factura encontrada: 
-Folio: ${factura.folio}
-Importe: ${factura.total}
-Correo: ${factura.correo}`);
+    Folio: ${factura.folio}
+    Importe: ${factura.total}
+    Correo: ${factura.correo}`);
     } catch (error) {
         mostrarPopupError("❌ Hubo un problema al buscar la factura.");
     }

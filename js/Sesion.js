@@ -55,11 +55,36 @@ async function loginConEmail(event) {
         sessionStorage.setItem('nombreCliente', usuario.nombre);
     }
     sessionStorage.setItem('sesionActiva', 'true');
+    const { data: yaExiste, error: errorExiste } = await supabase
+        .from('Usuarios')
+        .select('id')
+        .eq('auth_id', data.user.id)
+        .maybeSingle();
+
+    if (!yaExiste && !errorExiste) {
+        const { user_metadata } = data.user;
+
+        const { error: insertError } = await supabase.from('Usuarios').insert([{
+            auth_id: data.user.id,
+            nombre: user_metadata?.nombres || '',
+            correo: data.user.email,
+            telefono: user_metadata?.telefono || '',
+            fecha_nacimiento: null // o un valor predeterminado si lo tienes
+        }]);
+
+        if (insertError) {
+            console.error("❌ Error al insertar en Usuarios:", insertError.message);
+            mostrarPopup("Error", "No se pudo registrar información adicional.");
+        } else {
+            console.log("✅ Usuario insertado en tabla personalizada");
+        }
+    }
 
     mostrarPopup("Bienvenido", "Inicio de sesión exitoso.");
     setTimeout(() => {
         window.location.href = 'index.html';
     }, 1000);
+
 }
 
 function mostrarPopup(titulo, mensaje) {
@@ -85,4 +110,9 @@ function mostrarPopup(titulo, mensaje) {
   `;
     document.body.appendChild(popup);
     setTimeout(() => popup.remove(), 3000);
+}
+export async function obtenerSesionActiva() {
+    const { data, error } = await supabase.auth.getSession();
+    if (error || !data.session) return null;
+    return data.session.user;
 }

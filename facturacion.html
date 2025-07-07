@@ -69,6 +69,15 @@
             <label for="importe">Importe</label>
             <input type="text" id="importe" placeholder="Ej: 1000">
         </div>
+        <div class="campo">
+            <label for="folio">Tipo de Pago</label>
+            <select id="metodo_pago">
+                <option selected>Tarjeta</option>
+                <option>Efectivo</option>
+            </select>
+
+        </div>
+
 
         <div class="campo" style="flex: 1 1 60%;">
             <label for="razon">Razón Social</label>
@@ -113,7 +122,8 @@
             </select>
             <span class="info-container"><img src="img/info.svg" alt="info" class="logo-info">
                 <div class="tooltip-contenido">
-                    <p class="texto-tooltip">Clave que indica la finalidad o el propósito de una factura electrónica</p>
+                    <p class="texto-tooltip">Clave que indica la finalidad o el propósito de una factura electrónica
+                    </p>
                 </div>
             </span>
         </div>
@@ -210,7 +220,7 @@
     <script type="module" src="js/factura.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
-
+    <script type="module" src="js/Fredireccion.js"></script>
 
 </body>
 

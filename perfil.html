@@ -2,11 +2,11 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perfil - Cenaduría Chayito</title>
-
-    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Facturación - Cenaduría Chayito</title>
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -16,8 +16,7 @@
 
     <header>
         <a href="index.html">
-
-            <div class="logo , header-logo">
+            <div class="logo header-logo">
                 <img src="img/logoblanco.png" alt="Logo" class="tamanio-logo">
             </div>
         </a>
@@ -25,110 +24,97 @@
             <nav>
                 <ul>
                     <li><a href="index.html" class="borde-menu">Inicio</a></li>
-                    <li><a href="MENU.html" class="borde-menu">Menú</a></li>
+                    <li><a href="Menu.html" class="borde-menu">Menú</a></li>
                     <li><a href="promociones.html" class="borde-menu">Promociones</a></li>
-                    <li><a href="facturacion.html" id="link-facturacion" class="borde-menu">Facturación</a></li>
+                    <li><a id="link-facturacion" href="facturacion.html" class="borde-menu">Facturación</a></li>
                     <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
-                    <li><a href="perfil.html">Perfil</a></li>
                 </ul>
-
             </nav>
         </div>
-        <div class="contenedor-inicio-perfil">
-            <div class="perfil-dropdown">
-                <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
-                <div id="menu-perfil" class="menu-perfil">
-                    <a href="login.html" id="opcion-login">Iniciar sesión</a>
-                    <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
-                    <a href="login.html" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
-                </div>
+        <div class="perfil-dropdown">
+            <img id="perfil-icon" src="img/icono-perfil.png" class="logo-perfil" />
+            <div class="menu-perfil" id="menu-perfil">
+                <a href="login.html" id="opcion-login">Iniciar sesión</a>
+                <a href="perfil.html" id="opcion-perfil" style="display: none;">Perfil</a>
+                <a href="#" id="opcion-cerrar" style="display: none;">Cerrar sesión</a>
             </div>
         </div>
     </header>
-    <h2>Tu Perfil</h2>
-    <form class="formulario">
-        <div>
-            <h3>Datos del Usuario</h3>
-            <div class="campo">
-                <label for="folio">Nombres</label>
-                <input type="text" id="nombres" placeholder="Ej: Juan Manuel Balderas Lizarraga">
-            </div>
-            <div class="campo">
-                <label for="folio">Correo</label>
-                <input type="text" id="nombre" placeholder="Ej: ejemplo@chayito.mx">
-            </div>
-            <div class="campo">
-                <label for="folio">Fecha de nacimiento</label>
-                <input type="text" id="nombre" placeholder="Ej: Juan Perez">
-            </div>
-            <div class="campo">
-                <label for="folio">Nombres</label>
-                <input type="text" id="nombre" placeholder="Ej: Juan Perez">
-            </div>
-            <div class="campo">
-                <label for="folio">Nombres</label>
-                <input type="text" id="nombre" placeholder="Ej: Juan Perez">
-            </div>
-        </div>
-        <div class="campo">
-            <label for="importe">Importe</label>
-            <input type="text" id="importe" placeholder="Ej: 1000">
-        </div>
 
-        <div class="campo" style="flex: 1 1 60%;">
-            <label for="razon">Razón Social</label>
-            <input type="text" id="razon" placeholder="Cenaduria Chayito">
-            <span><img src="img/info.svg" alt="info" class="logo-info"></span>
-        </div>
+    <main>
+        <div class="container">
+            <h2>Perfil de Facturación</h2>
+            <p class="info-text">Completa tu perfil de facturación para agilizar tus compras. La información que
+                ingreses
+                aquí se **autocompletará automáticamente** en tus futuras facturas. Puedes modificar estos datos en
+                cualquier momento.</p>
 
-        <div class="campo">
-            <label for="rfc">RFC</label>
-            <input type="text" id="rfc" placeholder="RFC12345678">
-        </div>
+            <form id="perfilForm">
+                <h3>Información Fiscal</h3>
+                <div class="form-group">
+                    <label for="razonSocial">Nombre o Razón Social:</label>
+                    <input type="text" id="razonSocial" name="razon" placeholder="Ej. Nombre Empresa S.A. de C.V.">
+                </div>
+                <div class="form-group">
+                    <label for="rfc">RFC (Registro Federal de Contribuyentes):</label>
+                    <input type="text" id="rfc" name="rfc" placeholder="Ej. ABC010101XYZ">
+                </div>
+                <div class="form-group">
+                    <select id="usoCfdi" name="uso">
+                        <option value="" selected disabled>-- Selecciona una opción --</option>
+                        <option value="Gastos en General">Gastos en General</option>
+                        <option value="Adquisición de mercancías">Adquisición de mercancías</option>
+                        <option value="Por definir">Por definir</option>
+                    </select>
 
-        <div class="campo">
-            <label for="cp">Codigo Postal</label>
-            <input type="text" id="cp" placeholder="81200">
-        </div>
+                </div>
+                <div class="form-group">
+                    <select id="regimenFiscal" name="regimen">
+                        <option value="" selected disabled>-- Selecciona una opción --</option>
+                        <option value="General de Ley Personas Morales">General de Ley Personas Morales</option>
+                        <option value="Régimen Simplificado de Confianza">Régimen Simplificado de Confianza</option>
+                        <option value="Persona Física con Actividad Empresarial">Persona Física con Actividad
+                            Empresarial</option>
+                    </select>
 
-        <div class="campo">
-            <label for="regimen">Régimen Fiscal</label>
-            <select id="regimen">
-                <option selected>General de Ley Personas Morales</option>
-                <option>Régimen Simplificado de Confianza</option>
-                <option>Persona Física con Actividad Empresarial</option>
-            </select>
-            <span><img src="img/info.svg" alt="info" class="logo-info"></span>
-        </div>
 
-        <div class="campo">
-            <label for="uso">Uso CFDI</label>
-            <select id="uso">
-                <option selected>Gastos en General</option>
-                <option>Adquisición de mercancías</option>
-                <option>Por definir</option>
-            </select>
-            <span><img src="img/info.svg" alt="info" class="logo-info"></span>
-        </div>
+                    <hr>
 
-        <div class="campo" style="flex: 1 1 100%;">
-            <label for="correo">Correo</label>
-            <input type="email" id="correo" placeholder="cenaduriachayito@chayito.mx">
+                    <div class="form-group">
+                        <label for="codigoPostal">Código Postal:</label>
+                        <input type="text" id="codigoPostal" name="cp" placeholder="Ej. 82000" pattern="\d{5}"
+                            title="Cinco dígitos numéricos">
+                    </div>
+
+                    <hr>
+
+                    <h3>Datos de Contacto</h3>
+                    <div class="form-group">
+                        <label for="emailFacturacion">Correo Electrónico para Facturación:</label>
+                        <input type="email" id="emailFacturacion" name="correo" placeholder="Ej. correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (opcional):</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Ej. 5512345678">
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="save-button btn-perfil">Guardar Perfil</button>
+                        <button type="button" id="eliminarPerfilBtn" class="delete-button btn-perfil">Eliminar
+                        </button>
+                        <button type="button" id="editar-datos" class="btn-azul btn-perfil"
+                            style="display: none;">Editar
+                            datos</button>
+                        <button type="button" id="cancelar-edicion" class="btn-azul btn-perfil"
+                            style="display: none;">Cancela
+                            redición</button>
+
+                        <button id="eliminar-cuenta-btn" class="delete-button btn-perfil">Eliminar Cuenta</button>
+
+                    </div>
+            </form>
         </div>
-        <div class="campo">
-            <label for="codigoFactura">Codigo de Factura</label>
-            <input type="text" id="CF" placeholder="01234567891122">
-            <span><img src="img/info.svg" alt="info" class="logo-info"></span>
-        </div>
-        <div class="campo">
-            <label for="sucursal">Sucursal</label>
-            <select id="Sucursal">
-                <option selected>Chayito Zona Dorada</option>
-                <option>Chayito Real del Valle</option>
-                <option>Chayito Walmart</option>
-            </select>
-        </div>
-    </form>
+    </main>
 
     <footer>
         <div class="footer-bloque izquierda">
@@ -149,19 +135,56 @@
         </div>
     </footer>
 
-    <!-- Popup de cierre de sesión -->
-    <div id="popup-salida" class="popup-error oculto">
-        <div class="popup-contenido">
-            <p id="popup-salida-mensaje">Aquí va el mensaje</p>
-            <button id="popup-salida-aceptar">Aceptar</button>
+
+
+    <div id="redirect-popup-error" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-mensaje">Mensaje predeterminado de error de redirección (ej: "Debes iniciar sesión").
+            </p>
+            <button id="redirect-popup-aceptar">Aceptar</button>
         </div>
     </div>
-    <script src="js/carrusel.js"></script>
+
+    <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
+        <div class="redirect-content">
+            <p id="redirect-popup-salida-mensaje">Has cerrado sesión correctamente.</p>
+        </div>
+    </div>
+
+    <div id="confirm-delete-modal" class="modal-error oculto">
+        <div class="modal-content">
+            <p>¿Estás seguro de que quieres eliminar tu perfil de facturación? Esta acción es irreversible.</p>
+            <button id="confirm-delete-yes">Sí, Eliminar</button>
+            <button id="confirm-delete-no">No, Cancelar</button>
+        </div>
+    </div>
+    <div id="modal-general-error" class="redirect-popup oculto">
+        <div class="redirect-content">
+            <p id="modal-general-mensaje"></p>
+            <button id="modal-general-aceptar">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación personalizado -->
+    <div id="popup-confirm" class="popup-confirm oculto">
+        <div class="popup-contenido">
+            <h2>¿Eliminar cuenta?</h2>
+            <p>¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+            <div class="popup-botones">
+                <button id="confirmar-eliminar" class="confirmar">Sí, eliminar</button>
+                <button id="cancelar-eliminar" class="cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
     <script src="js/PantallaCarga.js"></script>
     <script type="module" src="js/Sesion.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
-
+    <script type="module" src="js/guardarPerfil.js"></script>
+    <script type="module" src="js/EliminarPerfil.js"></script>
+    <script type="module" src="js/BorrarSesion.js"></script>
 </body>
 
 </html>

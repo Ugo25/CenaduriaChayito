@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Cenaduría Chayito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -28,6 +30,7 @@
                     <li><a id="link-facturacion" class="borde-menu">Facturación</a></li>
 
                     <li><a href="contacto.html" class="borde-menu">Contacto</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -57,7 +60,13 @@
                 <input type="email" id="email">
 
                 <label for="password">Contraseña</label>
-                <input type="password" id="password">
+                <div style="position: relative;">
+                    <input type="password" id="password" style="padding-right: 35px;">
+                    <i id="toggle-password" class="fa-solid fa-eye"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #5a3102;"></i>
+                </div>
+
+
 
                 <button type="submit">Entrar</button>
             </form>
@@ -107,8 +116,7 @@
 
     <div id="redirect-popup-salida" class="redirect-popup redirect-hidden">
         <div class="redirect-content">
-            <p id="redirect-popup-salida-mensaje">Mensaje de confirmación de cierre de sesión.</p>
-            <button id="redirect-popup-salida-aceptar">Aceptar</button>
+            <p id="redirect-popup-salida-mensaje">Has cerrado sesión correctamente.</p>
         </div>
     </div>
     <!-- Popup de cierre de sesión -->
@@ -120,7 +128,7 @@
     <script type="module" src="js/Sesion.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
-
+    <script type="module" src="js/Contraseña.js"></script>
 </body>
 
 </html>
