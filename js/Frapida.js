@@ -1,13 +1,12 @@
-// Frapida.js (script exclusivo para FacturaRapida.html)
+// Frapida.js — genera factura completa con datos del perfil
 
 import { supabase } from './supabaseClient.js';
+import { enviarFactura } from './factura.js';
 
 window.supabase = supabase;
 
-// Acceder a jsPDF desde window.jspdf
-const { jsPDF } = window.jspdf;
+// DOM principal
 
-// DOMContentLoaded principal
 document.addEventListener('DOMContentLoaded', async () => {
     const btnGenerar = document.getElementById('btn-generar');
     const popupError = document.getElementById('popup-error');
@@ -28,78 +27,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     const userId = session.user.id;
     const correoCliente = session.user.email;
 
-    btnGenerar.addEventListener('click', async () => {
+    btnGenerar.addEventListener('click', async (e) => {
+        e.preventDefault();
         btnGenerar.disabled = true;
         btnGenerar.innerHTML = '<span class="spinner"></span> Generando...';
 
         const folio = document.getElementById('folio').value.trim();
         const importe = document.getElementById('importe').value.trim();
-        const descripcion = document.getElementById('descripcion').value.trim();
+        const metodo_pago = document.getElementById('metodo_pago').value.trim();
+        const CF = document.getElementById('CF').value.trim();
+        const sucursal = document.getElementById('Sucursal').value.trim();
 
-        if (!folio || !importe || !descripcion) {
+        if (!folio || !importe || !metodo_pago || !CF || !sucursal) {
             mostrarError("Todos los campos son obligatorios.");
-            btnGenerar.disabled = false;
-            btnGenerar.textContent = "Generar Factura";
+            resetBoton();
             return;
         }
 
-        const doc = new jsPDF();
-        doc.autoTable({
-            head: [['Folio', 'Importe', 'Descripción']],
-            body: [[folio, `$${importe}`, descripcion]]
-        });
-
-        const pdfBlob = doc.output('blob');
-        const nombreArchivo = `factura-${folio}-${Date.now()}.pdf`;
-        const rutaArchivo = `${userId}/${nombreArchivo}`;
-
         try {
-            const { error: uploadError } = await supabase
-                .storage
-                .from('facturas')
-                .upload(rutaArchivo, pdfBlob, { contentType: 'application/pdf', upsert: true });
+            // Traer datos del perfil guardado
+            const { data: perfil, error: perfilError } = await supabase
+                .from('Perfil')
+                .select('*')
+                .eq('auth_id', userId)
+                .single();
 
-            if (uploadError) {
-                console.error("Error al subir PDF:", uploadError);
-                mostrarError("No se pudo subir el PDF.");
+            if (perfilError || !perfil) {
+                mostrarError("Error: El campo razon es requerido y no se encontró.");
+                resetBoton();
                 return;
             }
 
-            const { data: publicUrlData } = supabase.storage.from('facturas').getPublicUrl(rutaArchivo);
-            const publicUrl = publicUrlData?.publicUrl;
-            if (!publicUrl) {
-                mostrarError("PDF subido, pero no se obtuvo la URL pública.");
-                return;
-            }
+            // Guardar datos combinados en sessionStorage para que factura.js lo procese
+            sessionStorage.setItem("facturaReciente", JSON.stringify({
+                folio,
+                importe,
+                metodo_pago,
+                CF,
+                sucursal,
+                correo: correoCliente,
+                perfil // todos los datos del perfil fiscal
+            }));
 
-            const { error: insertError } = await supabase
-                .from('Facturas')
-                .insert([{
-                    folio,
-                    total: importe,
-                    correo: correoCliente,
-                    descripcion,
-                    pdf_url: publicUrl,
-                    fecha_cobro: new Date().toISOString()
-                }]);
+            // Usar la función de factura.js para generar y enviar
+            await enviarFactura();
+            mostrarExito("El correo con la factura fue enviado automáticamente.");
 
-            if (insertError) {
-                console.error("Error al insertar en la base de datos:", insertError);
-                mostrarError("No se pudo guardar la factura en la base de datos.");
-                return;
-            }
-
-            // Aquí ya no se envía correo. Solo se muestra éxito.
-            mostrarExito("Factura generada y guardada correctamente. (Envío de correo delegado a factura.js)");
-
-        } catch (error) {
-            console.error("Error en el proceso de facturación:", error);
-            mostrarError("Hubo un error inesperado.");
-        } finally {
-            btnGenerar.disabled = false;
-            btnGenerar.textContent = "Generar Factura";
+        } catch (err) {
+            console.error("Error inesperado:", err);
+            mostrarError("Hubo un error al generar la factura.");
         }
+
+        resetBoton();
     });
+
+    function resetBoton() {
+        btnGenerar.disabled = false;
+        btnGenerar.textContent = "Generar Factura";
+    }
 
     function mostrarError(mensaje) {
         popupMensaje.textContent = mensaje;

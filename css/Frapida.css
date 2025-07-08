@@ -263,6 +263,24 @@ button:hover {
     /* Verde más oscuro al pasar el ratón */
 }
 
+.btn-azul {
+    /* Usado para "Generar Factura" */
+    background-color: #2082a2;
+    /* Verde */
+    padding: 12px;
+    /* Alinear con el otro 'button' */
+    width: 100%;
+    /* Ocupa todo el ancho */
+    border-radius: 6px;
+    /* Alinear con el otro 'button' */
+    /* Ya hereda color, font-size, cursor, transition de la regla 'button' general */
+}
+
+.btn-verde:hover {
+    background-color: #185c73;
+    /* Verde más oscuro al pasar el ratón */
+}
+
 .save-button {
     background-color: #28a745;
     /* Verde */
@@ -415,4 +433,49 @@ select.bloqueado,
     /* Borde normal */
     opacity: 0.7;
     /* Ligeramente transparente para indicar deshabilitado */
+}
+
+.contenedor.campo #btn-generar.btn-azul {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #2082a2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.contenedor.campo #btn-generar.btn-azul:hover {
+    background-color: #185c73;
+}
+
+/* Contenedor para botones de facturación rápida */
+.botones-factura {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Asegura que el enlace tenga estilo de botón */
+.botones-factura .btn-azul {
+    background-color: #2082a2;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.botones-factura .btn-azul:hover {
+    background-color: #185c73;
 }
