@@ -16,3 +16,14 @@ main {
 footer {
     margin-top: auto;
 }
+.platillo {
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.platillo:hover {
+    cursor: default !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
