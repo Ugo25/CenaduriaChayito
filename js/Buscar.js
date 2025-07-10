@@ -46,11 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarModalGeneral("No se pudo inicializar Supabase.");
         return;
     }
-    (async () => {
-        const { data, error } = await supabase.from('Facturas').select('*');
-        console.log("Facturas disponibles:", data);
-    })();
+    let correoUsuario = null;
 
+    // Obtener la sesión activa y el correo del usuario
+    (async () => {
+        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+        if (sessionError || !sessionData.session) {
+            mostrarModalGeneral("No se pudo obtener la sesión del usuario.");
+            return;
+        }
+
+        correoUsuario = sessionData.session.user.email;
+        console.log("📧 Usuario autenticado:", correoUsuario);
+    })();
 
     if (formBusqueda) {
         formBusqueda.addEventListener('submit', async (e) => {
@@ -69,14 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
                 // Construcción de la consulta a la tabla 'Facturas' en Supabase
-                let query = supabase.from('Facturas').select('*');
+                let query = supabase.from('Facturas').select('*').eq('correo', correoUsuario);
 
                 if (tipoBusqueda === 'folio') {
-                    query = query.eq('folio', valorBusqueda);
-                } else if (tipoBusqueda === 'correo') {
-                    query = query.eq('correo', valorBusqueda);
+                    query = query.eq('folio', valorBusqueda).eq('correo', correoUsuario);
                 } else if (tipoBusqueda === 'fecha') {
-                    query = query.eq('created_at', valorBusqueda);
+                    query = query.eq('created_at', valorBusqueda).eq('correo', correoUsuario);
                 }
 
                 // Ejecutamos la consulta
@@ -116,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>Folio:</strong> ${factura.folio || 'N/A'}</p>
                     <p><strong>Fecha:</strong> ${new Date(factura.created_at).toLocaleDateString() || 'N/A'}</p>
                     <p><strong>Total:</strong> $${(factura.total || 0).toFixed(2)}</p>
-                    <p><strong>Cliente:</strong> ${factura.razon_social || factura.correo || 'Desconocido'}</p>
+                    <p><strong>Usuario:</strong> ${factura.correo || 'Desconocido'}</p>
                 </div>
                 <div class="factura-actions">
                     <button class="descargar-pdf" data-url="${factura.pdf_url || ''}" ${!factura.pdf_url ? 'disabled' : ''}>Descargar PDF</button>
