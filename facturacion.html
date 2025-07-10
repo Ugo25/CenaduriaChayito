@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
@@ -205,6 +204,12 @@
             <button id="redirect-popup-salida-aceptar">Aceptar</button>
         </div>
     </div>
+    <div id="popup-error" class="oculto">
+        <div class="popup-contenido">
+            <h2>Error</h2>
+            <p id="popup-mensaje"></p>
+        </div>
+    </div>
 
     <!-- Popup de éxito -->
     <div id="popup-exito" class="popup-error oculto">
@@ -220,8 +225,6 @@
     <script type="module" src="js/factura.js"></script>
     <script type="module" src="js/verificarSesion.js"></script>
     <script type="module" src="js/perfilDropdown.js"></script>
-    <script type="module" src="js/Fredireccion.js"></script>
-
 </body>
 
 </html>

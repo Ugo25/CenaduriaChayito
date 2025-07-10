@@ -48,8 +48,10 @@ header {
 }
 
 .tamanio-logo {
-    width: 150px;
-    height: 150px;
+    height: auto;
+    width: 100%;
+    max-width: 150px;
+    object-fit: contain;
 }
 
 .header-menu {
@@ -248,8 +250,10 @@ nav ul li a:hover {
 
 .carrusel {
     position: relative;
-    width: 1200px;
-    /* Cambia el tamaño del slider */
+    width: 100%;
+    /* CAMBIADO: Esto hará que el carrusel ocupe el 100% del ancho disponible de su padre */
+    max-width: 1200px;
+    /* OPCIONAL: Limita el ancho máximo en pantallas grandes si no quieres que se extienda demasiado */
     margin: 50px auto;
     /* Centrado horizontal */
     overflow: hidden;
@@ -2314,4 +2318,9 @@ body {
 /* Clase para bloquear el scroll del cuerpo cuando el popup está activo */
 body.bloqueado {
     overflow: hidden;
+}
+
+#redirect-popup-salida-mensaje {
+    font-size: 1.4rem;
+    font-weight: bold;
 }

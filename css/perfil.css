@@ -296,15 +296,7 @@
             cursor: pointer;
         }
 
-        .nombre-perfil {
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            white-space: nowrap;
-            max-width: 120px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+
 
         .logo-perfil {
             width: 50px;
