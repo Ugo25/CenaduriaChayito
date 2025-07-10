@@ -82,22 +82,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-document.addEventListener("DOMContentLoaded", () => {
-    const spanNombre = document.getElementById("nombre-perfil");
-    const sesionActiva = sessionStorage.getItem("sesionActiva");
-    const nombreCliente = sessionStorage.getItem("nombreCliente");
 
-    if (sesionActiva === "true" && spanNombre && nombreCliente) {
-        // Mostrar el nombre y hacerlo clickeable
-        spanNombre.textContent = nombreCliente;
-        spanNombre.style.display = "inline-block";
-        spanNombre.style.cursor = "pointer";
-        spanNombre.title = "Ver perfil";
-        spanNombre.onclick = () => {
-            window.location.href = "perfil.html";
-        };
-    } else if (spanNombre) {
-        spanNombre.style.display = "none"; // Oculta si no hay sesión
-    }
-});
 

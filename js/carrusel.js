@@ -27,3 +27,23 @@ setInterval(() => {
 
 // Mostrar el primero al cargar
 mostrarSlide(indiceSlide);
+
+const contenedorSlides = document.querySelector('.contenedor-slides');
+let startX = 0;
+
+contenedorSlides.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
+
+contenedorSlides.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diferencia = startX - endX;
+
+    if (Math.abs(diferencia) > 50) {
+        if (diferencia > 0) {
+            cambiarSlide(1); // Deslizar a la izquierda
+        } else {
+            cambiarSlide(-1); // Deslizar a la derecha
+        }
+    }
+});

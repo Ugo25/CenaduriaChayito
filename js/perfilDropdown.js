@@ -1,4 +1,5 @@
 // js/perfilDropdown.js
+import { supabase } from './supabaseClient.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("perfilDropdown cargado ✅");
@@ -68,10 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.removeItem("nombreCliente");
         console.log("Datos de sesión eliminados.");
 
-        if (window.supabase) {
-            await window.supabase.auth.signOut();
-            console.log("Sesión de Supabase cerrada.");
-        }
+        await supabase.auth.signOut();
+        console.log("Sesión de Supabase cerrada.");
 
         // --- INICIO DEL CÓDIGO CORREGIDO PARA EL POPUP DE SALIDA ---
         // Se asegura de que los elementos del popup existan antes de intentar manipularlos

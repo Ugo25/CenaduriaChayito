@@ -127,28 +127,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         const nuevoPerfil = obtenerDatosFormulario();
         nuevoPerfil.usuarios_id = userId;
 
-        let respuesta;
-        if (perfilActual && perfilActual.id) {
-            respuesta = await supabase.from('Perfil').update(nuevoPerfil).eq('id', perfilActual.id);
-        } else {
-            respuesta = await supabase.from('Perfil').insert([nuevoPerfil]);
-        }
+        // 1. Buscar si ya existe un perfil para este usuario
+        const { data: existente, error: errorBuscar } = await supabase
+            .from('Perfil')
+            .select('id')
+            .eq('correo_facturacion', nuevoPerfil.correo_facturacion) // o usa cualquier campo que identifique al usuario
+            .maybeSingle();
 
-        if (respuesta.error) {
-            console.error("Error al guardar:", respuesta.error);
-            mostrarPopup("Error", "Error al guardar el perfil: " + respuesta.error.message);
+        if (errorBuscar) {
+            console.error("Error al buscar perfil:", errorBuscar);
+            mostrarPopup("Error", "No se pudo verificar si ya existe un perfil.");
             return;
         }
 
-        // Sincroniza teléfono en tabla Usuarios
-        const telefonoSincronizar = document.getElementById('telefono').value.trim();
-        const { error: errorSync } = await supabase
-            .from('Usuarios')
-            .update({ telefono: telefonoSincronizar })
-            .eq('auth_id', userId);
+        // 2. Elegir entre insert o update manualmente
+        let respuesta;
 
-        if (errorSync) {
-            mostrarPopup("Advertencia", "Perfil guardado, pero no se pudo sincronizar el teléfono.");
+        if (existente) {
+            respuesta = await supabase
+                .from('Perfil')
+                .update(nuevoPerfil)
+                .eq('id', existente.id);
+        } else {
+            respuesta = await supabase
+                .from('Perfil')
+                .insert([nuevoPerfil]);
+        }
+
+        if (respuesta.error) {
+            console.error("Error al guardar perfil:", respuesta.error);
+            mostrarPopup("Error", "No se pudo guardar el perfil.");
+            return;
         }
 
         mostrarPopup("Éxito", "Perfil guardado correctamente.");
